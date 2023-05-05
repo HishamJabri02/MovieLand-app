@@ -1,0 +1,28 @@
+@import "../common/colors.scss";
+.movie-wrapper {
+  background-color: black;
+}
+.movie-list,
+.show-list {
+  margin: 0;
+  padding-bottom: 20px;
+  h2 {
+    margin: 0;
+    padding-top: 20px;
+    color: $font-secondary;
+    margin-bottom: 10px;
+    font-weight: 400;
+  }
+}
+.slick-next {
+  right: 15px;
+  z-index: 20;
+}
+.slick-prev {
+  left: 15px;
+  z-index: 20;
+}
+.slick-list {
+  width: 95%;
+  margin: 0 auto;
+}
