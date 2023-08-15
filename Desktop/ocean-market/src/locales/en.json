@@ -1,0 +1,287 @@
+{
+  "auth": {
+    "generall": {
+      "remember": "Remember me",
+      "account": "Don't Have An Account",
+      "accountReg": "Already Have Account ?",
+      "condition": "I Have Read And Agree To The Terms Of Service",
+      "code": "If You Didn't Receive A Code!",
+      "resend": "Resend",
+      "or": "Or",
+      "logout": "LogOut"
+    },
+    "header": {
+      "Login": {
+        "title": "Log Into Your Account",
+        "subTitle": "Welcome Back, Please Enter Your Details ."
+      },
+      "Register": {
+        "title": "Create An Account",
+        "subTitle": "Register Not To Get Started An Account"
+      },
+      "ForgetPassword": {
+        "title": "Forget Password",
+        "subTitle": "Please Enter Your Phone Number To Receive A Verification Code"
+      },
+      "Verification": {
+        "title": "Verification",
+        "subTitle": "Enter The OTP Code From The Phone We Just Sent You"
+      },
+      "Block": {
+        "title": "Your Account is Blocked",
+        "subTitle": "Your Account has been locked.Contact Support To Reactivate Your Account"
+      }
+    },
+    "labels": {
+      "PhoneNumber": "Phone Number",
+      "Password": "Password",
+      "FullName": "Full Name",
+      "Email": "Email",
+      "ConfirmPassword": "Confirm Password",
+      "Otp": "Enter Verification Code"
+    },
+    "errors": {
+      "PhoneNumberRequired": "Phone Number is required",
+      "PhoneNumberReg": "Phone Number is not valid",
+      "Password": "Password is required",
+      "Otp": "Please complete your Otp"
+    },
+    "links": {
+      "forgetPassword": "Forget Password ?",
+      "Register": "Register",
+      "Login": "Login",
+      "back": "Back To Login",
+      "guest": "Continue As A Guest"
+    }
+  },
+  "footer":{
+    "links":{
+      "resource":"Resources",
+      "legal":"Legal",
+      "follow":"Follow Us",
+      "Home":"Home",
+      "Categories":"Categories",
+      "Product":"Product",
+      "Brand":"Brand",
+      "About Us":"About Us",
+      "Terms and Condition":"Terms and Condition",
+      "Developer Information":"Developer Information",
+      "Privacy Policy":"Privacy Policy",
+      "download":"Download App"
+    },
+    "title":"Get The Best Online Shopping Experience With Ocean Market. We Sell Products Of All Categories. Easy And Fast Delivery. Best Offers."
+  },
+  "navbar": {
+    "links":{
+      "Home":"Home",
+      "Categories":"Categories",
+      "Product":"Product",
+      "Brand":"Brand",
+      "My Favorite":"My Favorite",
+      "About Us":"About Us",
+      "Terms and Condition":"Terms and Condition",
+      "Developer Information":"Developer Information",
+      "Privacy Policy":"Privacy Policy"
+      },
+    "drawer": {
+      "title": {
+        "shop": "Shop with Us",
+        "settings": "Settings",
+        "app": "Enjoy On The App",
+        "download": "Download The App",
+        "log": "Login / Signup"
+      }
+    },
+    "icons": {
+      "notification": "My Notification",
+      "wishList": "WishList",
+      "cart": "My Cart",
+      "language":"currency"
+    }
+  },
+  "buttons": {
+    "Login": "Login",
+    "sign": "Sign in",
+    "Register": "Register",
+    "submit": "Submit",
+    "support": "Open Support",
+    "add":"Add TO Bag",
+    "go":"Go To Shopping",
+    "checkout":"CheckOut",
+    "update":"Update Details",
+    "shop":"Shop Now"
+  },
+  "home": {
+    "errors":{
+      "cart":{
+        "title":"Your Cart Is Empty",
+        "subTitle":"Looks Like You Have Not Added Anything To Your Cart Go A Head & Explore Top Categories"
+      },
+      "fav":{
+        "title":"No Favorites Yet",
+        "subTitle":"Click The Actions Button On Any Page To Add A Favorite"
+      }
+    },
+    "product":{
+      "availble":"Availble",
+      "unavailble":"Unavailble",
+      "color":"Color",
+      "size":"Size",
+      "quantity":"Quantity",
+      "summary":"Summary",
+      "items":"Total Items",
+      "subTotal":"Subtotal",
+      "discount":"Discount",
+      "total":"Total Amount",
+      "item":"Item"
+    },
+    "titles": {
+      "Home":"Home",
+      "slider": "Special Offers",
+      "categories": "Shop By Categories",
+      "brands": "Luxury Brands",
+      "new": "New Arrival",
+      "top": "Top Rated",
+      "offers": "Special Offers",
+      "price-highest":"Price_ASC",
+      "price-lowest":"Price_DESC",
+      "cart":"MY Shopping Cart",
+      "favorite":"Favorites"
+    },
+    "subTitle": {
+      "categories": "Premium Quality And Reasonable Prices",
+      "brands": "It Satisfies Your Longing For A Charming And Radiant Look"
+    },
+    "links": {
+      "all": "See All"
+    }
+  },
+  "generall": {
+    "price": "kwd",
+    "unavaible": "Unavaible Product",
+    "new": "New",
+    "lang":"Language"
+  },
+  "privacy":{
+    "name":"Privacy Policy",
+    "title":"At Our Application, We Value The Privacy Of Our Users, And We Handle The Personal Information They Provide Us With The Utmost Confidentiality And Security. We Are Committed To Complying With All Applicable Laws And Regulations Related To Privacy And Personal Data Protection.    "
+    ,
+    "conditions":{
+      "one":{
+        "title":"Information we collect:" ,
+        "subTitle":"We Collect Customers' Personal Information, Such As Name, Address, Phone Number, And Email Address, Solely To Provide Online Shopping Services. We Also Collect Usage Details And Information Necessary To Process Orders And Provide Services."
+      },
+      "two":{
+        "title":"How We Use The Information:" ,
+        "subTitle":"We Use The Information We Collect To Improve The User Experience, Provide Online Shopping Services, Improve Our Services, And Customize The User Experience According To Their Interests And Preferences. We Only Use Payment Information To Process Orders And Provide Secure Payment Services"
+      },
+      "three":{
+        "title":"Disclosure Of Information:" ,
+        "subTitle":"We Do Not Sell, Rent, Or Share Users' Information With Any Other Party Except As Permitted By Law Or When Necessary To Comply"
+      },
+      "four":{
+        "title":"Disclosure Of Information:",
+        "subTitle":"We Take All Necessary Measures To Protect Users' Personal Information From Unauthorized Access, Use, Modification, Disclosure, And Destruction. We Also Use Advanced Security Technologies To Ensure The Protection Of Sensitive Information"
+      },
+      "five":{
+        "title":"Contact Us:",
+        "subTitle":"If You Have Any Questions Or Inquiries About Our Privacy Policy, Please Contact Our Support Team Via Email Or Phone."
+      },
+      "six":{
+        "title":"Changes To The Privacy Policy:",
+        "subTitle":"We Reserve The Right To Modify Or Update Our Privacy Policy From Time To Time, And We Will Announce Any Changes On Our Website, And The Last Modified Date Will Be Updated On This Page. Please Check This Page Regularly For Any New Changes To Our Privacy Policy."
+      }      
+    },
+    "finally":"We hope that this policy has clarified how we collect, use, and protect users' personal information in our application. We are committed to maintaining users' trust in us and complying with the highest standards of privacy and security."
+  },
+  "terms":{
+    "name":"Terms And Condition",
+    "title":"Here Are The Terms And Condition For E-Commerce Application:"
+    ,
+    "conditions":{
+      "one":{
+        "title":"Use:" ,
+        "subTitle":"All Users Must Comply With The Terms And Conditions Of This Application And All Applicable Laws And Regulations. The Use Of The Application For Any Illegal Or Unethical Purpose Is Prohibited."
+      },
+      "two":{
+        "title":"Accounts:" ,
+        "subTitle":"Users Must Create A Personal Account To Access The Services Of The Application. The Personal Information Provided Must Be Accurate And Up-To-Date. Using Users' Accounts Without Their Permission Or In An Unlawful Manner Is Prohibited."
+      },
+      "three":{
+        "title":"Intellectual Property:" ,
+        "subTitle":"Copying, Distributing, Or Using Any Part Of The Content Available On The Application Without Prior Written Permission From The Copyright Owner Is Prohibited. Users Must Also Comply With Other Intellectual Property Rights Related To The Application And The Content Published On It."
+      },
+      "four":{
+        "title":"Online Shopping:",
+        "subTitle":"The Online Shopping Services Available On The Application Must Be Used In A Legitimate And Fair Manner. Users Must Pay The Due Amounts Correctly And On Time."
+      },
+      "five":{
+        "title":"Cancellation And Refunds:",
+        "subTitle":"Users Have The Right To Cancel Or Refund Any Order Before Delivery, According To The Cancellation And Refund Policy Available On The Application. Users Must Return The Returned Products In Good And Unused Condition."
+      },
+      "six":{
+        "title":"Liability:",
+        "subTitle":"The Application Is Used Solely At The User's Own Risk. The Application Will Not Be Responsible For Any Direct Or Indirect Losses Or Damages Resulting From The User's Use Of The Application Or Reliance On Any Information Available On It."
+      },     
+      "seven":{
+        "title":"Change To Terms And Conditions:",
+        "subTitle":"We Reserve The Right To Modify Or Update The Terms And Conditions Of This Application From Time To Time. Users Will Be Informed Of Any Changes To The Terms And Conditions Through The Application Or Email."
+      } ,     
+      "eight":{
+        "title":" Contact Us:",
+        "subTitle":"TUsers Can Contact Our Support Team For Any Questions, Comments, Or Complaints Via Email Or The Phone Number Available On The Application."
+      }      
+    },
+    "finally":"We Hope That These Terms And Conditions Are Clear To All Users, And We Are Committed To Providing Our Services In A Transparent, Fair, And Legitimate Manner According To The Highest Ethical Standards And Practices"
+  },
+  "developer":{
+    "name":"Developer Information",
+    "question":"What We Do For You:",
+    "contact":"Conact With Us:",
+    "title":"This Application Is Developed And Built By:",
+    "explain":"Launched From Kuwait, Producing The Best Specialized Software In The Middle East, Taking The Advantage Of Frequent Following Up To The World Latest Technology,Thanks To Confidence Given By Our Customers Since 2001Custom Solutions Development, Native Mobile Apps Development For IOS And Android Platforms, Access Control Systems, Installation E-Commerce Systems Design, Development And Implementation."
+  },
+  "about":{
+    "name":"About Us",
+    "title":"Premium Quality And Reasonable Prices",
+    "conditions":{
+      "one":{
+        "title":"Overview:" ,
+        "subTitle":"E-Store is an application designed to facilitate online shopping. The application offers a wide range of electronic products, including clothing, shoes."
+      },
+      "two":{
+        "title":"History and Location:" ,
+        "subTitle":"E-Store was established in 2023 and is headquartered in Kuwait City."
+      },
+      "three":{
+        "title":"Team:" ,
+        "subTitle":"The E-Store team consists of a group of professionals who excel in software development, product design, and online marketing."
+      },
+      "four":{
+        "title":"Vision and Mission:",
+        "subTitle":"E-Store aims to provide an easy and convenient online shopping experience for users worldwide. We strive to provide high-quality products and excellent customer service to achieve customer satisfaction."
+      },
+      "five":{
+        "title":"Privacy and Security:",
+        "subTitle":"E-Store values the privacy of users and their personal data. We follow high-security standards in all aspects of the application and use encryption technologies to protect sensitive information."
+      },
+      "six":{
+        "title":"Legal Information:",
+        "subTitle":"We comply with all applicable laws and regulations in the field of e-commerce and follow strict terms and conditions to maintain service quality and protect the interests of users."
+      },     
+      "seven":{
+        "title":"Version:",
+        "subTitle":"The current version of the E-Store application is 1.0.0, released in june 2023"
+      } ,     
+      "eight":{
+        "title":"Contact Information",
+        "subTitle":"Users can contact E-Store support team for any questions or comments by email at support@ocean-kw.com or by calling 0096597271188"
+      } ,     
+      "nine":{
+        "title":"Thanks and Appreciation:",
+        "subTitle":"We would like to thank all users who use the E-Store application and support us in achieving our goals. We truly appreciate your trust in us and promise to provide high-quality service and excellent products for online shopping."
+      }      
+    },
+    "finally":"We Would Like To Thank All Users Who Use The E-Store Application And Support Us In Achieving Our Goals. We Truly Appreciate Your Trust In Us And Promise To Provide High-Quality Service And Excellent Products For Online Shopping."
+  }
+}

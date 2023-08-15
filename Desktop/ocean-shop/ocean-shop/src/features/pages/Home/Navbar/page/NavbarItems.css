@@ -1,0 +1,25 @@
+.nav-links {
+  text-decoration: none;
+  font-size: 14px;
+  color: black;
+  height: 100%;
+  line-height: 80px;
+  transition: 0.3s;
+}
+.nav-links:hover {
+  border-bottom: 2px solid black;
+}
+.active {
+  font-weight: bold;
+}
+
+.menu-links {
+  text-decoration: none;
+  font-size: 14px;
+  color: black;
+  height: 100%;
+  transition: 0.3s;
+}
+.menu-links:hover {
+  color: blue;
+}

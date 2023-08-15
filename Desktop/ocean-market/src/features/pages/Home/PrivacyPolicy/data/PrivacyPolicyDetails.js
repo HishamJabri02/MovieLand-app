@@ -1,0 +1,39 @@
+const PrivacyPolicyDetails = [
+{
+  id:1,
+  number:"one",
+  title:"title",
+  subTitle:"subTitle"
+},
+{
+  id:2,
+  number:"two",
+  title:"title",
+  subTitle:"subTitle"
+},
+{
+  id:3,
+  number:"three",
+  title:"title",
+  subTitle:"subTitle"
+},
+{
+  id:4,
+  number:"four",
+  title:"title",
+  subTitle:"subTitle"
+},
+{
+  id:5,
+  number:"five",
+  title:"title",
+  subTitle:"subTitle"
+},
+{
+  id:6,
+  number:"six",
+  title:"title",
+  subTitle:"subTitle"
+}
+];
+export default PrivacyPolicyDetails;

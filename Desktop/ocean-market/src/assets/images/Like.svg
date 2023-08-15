@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="128.926" height="128.926" viewBox="0 0 128.926 128.926">
+  <defs>
+    <filter id="Mask" x="0" y="0" width="128.926" height="128.926" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feFlood flood-opacity="0.071"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <linearGradient id="linear-gradient" x1="0.982" y1="1" x2="0.02" y2="0.112" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#4be1ec"/>
+      <stop offset="0.469" stop-color="#9931d6"/>
+      <stop offset="1" stop-color="#dc136e"/>
+    </linearGradient>
+  </defs>
+  <g id="Group_68066" data-name="Group 68066" transform="translate(8.011 6.068)">
+    <g transform="matrix(1, 0, 0, 1, -8.01, -6.07)" filter="url(#Mask)">
+      <g id="Mask-2" data-name="Mask" transform="translate(8 6)" fill="#f7f8fa" stroke="#fff" stroke-miterlimit="10" stroke-width="2">
+        <circle cx="56.463" cy="56.463" r="56.463" stroke="none"/>
+        <circle cx="56.463" cy="56.463" r="57.463" fill="none"/>
+      </g>
+    </g>
+    <path id="Intersection_19" data-name="Intersection 19" d="M16.074,84.256,52.8,53.925H.772A57.636,57.636,0,0,1,0,44.5c0-.189,0-.373,0-.56L93.116,0a57.628,57.628,0,0,1,6.552,6.207L66.235,37.272h47.691a57.8,57.8,0,0,1,.453,7.232q0,2.481-.208,4.906L24.359,91.338A57.577,57.577,0,0,1,16.074,84.256Z" transform="translate(0.144 12.477)" fill="#f0e" opacity="0.2"/>
+    <path id="ic_thumb_up_24px" d="M1,46.752h9.15V19.3H1ZM51.327,21.588a4.589,4.589,0,0,0-4.575-4.575H32.317L34.49,6.559l.069-.732A3.444,3.444,0,0,0,33.553,3.4L31.128,1,16.075,16.075a4.473,4.473,0,0,0-1.35,3.226V42.177A4.589,4.589,0,0,0,19.3,46.752H39.889A4.544,4.544,0,0,0,44.1,43.961l6.909-16.128a4.52,4.52,0,0,0,.32-1.67V21.794l-.023-.023Z" transform="translate(31.17 33.101)" stroke="rgba(0,0,0,0)" stroke-miterlimit="10" stroke-width="1" fill="url(#linear-gradient)"/>
+  </g>
+</svg>

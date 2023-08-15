@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="129.624" height="129.624" viewBox="0 0 129.624 129.624">
+  <defs>
+    <filter id="Mask" x="0" y="0" width="129.624" height="129.624" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feFlood flood-opacity="0.071"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <linearGradient id="linear-gradient" x1="0.982" y1="1" x2="0.02" y2="0.112" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#4be1ec"/>
+      <stop offset="0.469" stop-color="#9931d6"/>
+      <stop offset="1" stop-color="#dc136e"/>
+    </linearGradient>
+  </defs>
+  <g id="Group_68080" data-name="Group 68080" transform="translate(7.918 6)">
+    <g transform="matrix(1, 0, 0, 1, -7.92, -6)" filter="url(#Mask)">
+      <g id="Mask-2" data-name="Mask" transform="translate(8 6)" fill="#f7f8fa" stroke="#fff" stroke-miterlimit="10" stroke-width="2">
+        <circle cx="56.812" cy="56.812" r="56.812" stroke="none"/>
+        <circle cx="56.812" cy="56.812" r="57.812" fill="none"/>
+      </g>
+    </g>
+    <path id="Intersection_19" data-name="Intersection 19" d="M16.044,84.1,52.7,53.825H.771A57.507,57.507,0,0,1,0,44.42c0-.187,0-.372,0-.557L92.945,0a57.575,57.575,0,0,1,6.54,6.2l-33.371,31h47.6a57.681,57.681,0,0,1,.452,7.219q0,2.477-.208,4.9L24.314,91.171A57.527,57.527,0,0,1,16.044,84.1Z" transform="translate(0.002 12.667)" fill="#f0e" opacity="0.2"/>
+    <path id="Path_2298" data-name="Path 2298" d="M167.112,176a17.38,17.38,0,0,0-13.066,6.071A17.4,17.4,0,0,0,140.975,176,15.822,15.822,0,0,0,125,191.975c0,10.979,9.873,19.923,24.831,33.514l4.215,3.806,4.21-3.833c14.958-13.563,24.831-22.508,24.831-33.487A15.822,15.822,0,0,0,167.112,176Z" transform="translate(-96.958 -144.395)" fill-rule="evenodd" fill="url(#linear-gradient)"/>
+  </g>
+</svg>

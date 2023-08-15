@@ -1,0 +1,68 @@
+.photo {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 30px;
+}
+.shape img {
+  width: 70%;
+}
+.shape {
+  position: absolute;
+  z-index: -2;
+}
+.shape.left {
+  left: -15px;
+  bottom: -10px;
+}
+.shape.right {
+  bottom: -5px;
+  right: -15px;
+  display: flex;
+  justify-content: flex-end;
+}
+.text {
+  position: relative;
+  top: 3%;
+  transform: translate(5%, -3%);
+  border:1px solid #E9E9E9
+
+}
+.text.left {
+  z-index: 3;
+  left: -5%;
+}
+.text.right {
+  z-index: 3;
+  right: -5%;
+}
+@media only screen and (max-width: 1200px) and (min-width: 900px) {
+  .text {
+    transform: translate(5%, -7%);
+  }
+}
+@media only screen and (max-width: 900px) and (min-width: 0px) {
+  .text {
+    transform: translate(0%, 0%);
+  }
+  .text.right {
+    z-index: 3;
+    right: 0%;
+  }
+  .text.left {
+    z-index: 3;
+    left: 0%;
+  }
+  .shape.right {
+    bottom: 0px;
+    right: -5px;
+    display: flex;
+    justify-content: flex-end;
+}
+.photo {
+  margin-bottom: 16px;
+}
+.shape.left {
+  left: -5px;
+  bottom: -5px;
+}
+}

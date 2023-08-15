@@ -1,0 +1,1 @@
+export  const dataGrids=["item","Order ID","Quantity","TotalPrice","Order Status","Payment Status","Order Details"]

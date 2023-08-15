@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="17" height="17" viewBox="0 0 17 17">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.982" y1="1" x2="0.02" y2="0.112" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#4be1ec"/>
+      <stop offset="0.469" stop-color="#9931d6"/>
+      <stop offset="1" stop-color="#dc136e"/>
+    </linearGradient>
+  </defs>
+  <path id="ic_person_outline_24px" d="M12.5,6.019A2.231,2.231,0,1,1,10.269,8.25,2.231,2.231,0,0,1,12.5,6.019m0,9.562c3.156,0,6.481,1.551,6.481,2.231v1.169H6.019V17.813c0-.68,3.326-2.231,6.481-2.231M12.5,4a4.25,4.25,0,1,0,4.25,4.25A4.249,4.249,0,0,0,12.5,4Zm0,9.563c-2.837,0-8.5,1.424-8.5,4.25V21H21V17.813C21,14.986,15.337,13.563,12.5,13.563Z" transform="translate(-4 -4)" fill="url(#linear-gradient)"/>
+</svg>

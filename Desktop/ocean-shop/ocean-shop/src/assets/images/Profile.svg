@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="54.959" height="54.959" viewBox="0 0 54.959 54.959">
+  <defs>
+    <filter id="Mask" x="0" y="0" width="54.959" height="54.959" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feFlood flood-opacity="0.071"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <clipPath id="clip-path">
+      <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Mask)">
+        <circle id="Mask-2" data-name="Mask" cx="21.479" cy="21.479" r="21.479" fill="#f5f5f5"/>
+      </g>
+    </clipPath>
+    <linearGradient id="linear-gradient" x1="0.982" y1="1" x2="0.02" y2="0.112" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#4be1ec"/>
+      <stop offset="0.469" stop-color="#9931d6"/>
+      <stop offset="1" stop-color="#dc136e"/>
+    </linearGradient>
+  </defs>
+  <g id="Group_68043" data-name="Group 68043" transform="translate(-1797.935 -25.52)">
+    <g id="Path_2" data-name="Path 2" transform="translate(1803.935 29.52)">
+      <path id="Mask-3" data-name="Mask" d="M21.479,0A21.479,21.479,0,1,1,0,21.479,21.479,21.479,0,0,1,21.479,0Z" fill="#f5f5f5"/>
+    </g>
+    <path id="Intersection_20" data-name="Intersection 20" d="M-956.535,16915.838c.963-4.508,10.241-6.777,15.016-6.777s14.053,2.27,15.012,6.781a21.408,21.408,0,0,1-15.012,6.119A21.409,21.409,0,0,1-956.535,16915.838Zm7.465-18.1a7.543,7.543,0,0,1,7.551-7.547,7.543,7.543,0,0,1,7.546,7.547,7.546,7.546,0,0,1-7.546,7.547A7.547,7.547,0,0,1-949.07,16897.74Z" transform="translate(2766.936 -16849.484)" fill="url(#linear-gradient)"/>
+  </g>
+</svg>

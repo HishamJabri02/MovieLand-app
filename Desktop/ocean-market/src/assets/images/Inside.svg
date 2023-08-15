@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="72" height="72" viewBox="0 0 72 72">
+  <defs>
+    <filter id="Mask" x="0" y="0" width="72" height="72" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feFlood flood-opacity="0.071"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <linearGradient id="linear-gradient" x1="0.982" y1="1" x2="0.02" y2="0.112" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#4be1ec"/>
+      <stop offset="0.469" stop-color="#9931d6"/>
+      <stop offset="1" stop-color="#dc136e"/>
+    </linearGradient>
+  </defs>
+  <g id="Group_17888" data-name="Group 17888" transform="translate(-69 -250)">
+    <g transform="matrix(1, 0, 0, 1, 69, 250)" filter="url(#Mask)">
+      <g id="Mask-2" data-name="Mask" transform="translate(8 6)" fill="#f7f8fa" stroke="#fff" stroke-miterlimit="10" stroke-width="2">
+        <circle cx="28" cy="28" r="28" stroke="none"/>
+        <circle cx="28" cy="28" r="29" fill="none"/>
+      </g>
+    </g>
+    <path id="Intersection_19" data-name="Intersection 19" d="M2226.22-10544.537l17.979-14.85h-25.471a28.212,28.212,0,0,1-.378-4.612c0-.092,0-.183,0-.273l45.587-21.515a28.173,28.173,0,0,1,3.208,3.039l-16.368,15.208h23.349a28.3,28.3,0,0,1,.222,3.541q0,1.214-.1,2.4l-43.971,20.527A28.186,28.186,0,0,1,2226.22-10544.537Z" transform="translate(-2141.35 10848)" fill="#f0e" opacity="0.2"/>
+    <path id="ic_exit_to_app_24px" d="M11.254,17.657,12.9,19.3l5.821-5.821L12.9,7.657,11.254,9.3l3,3.015H3v2.328H14.258ZM21.627,3H5.328A2.328,2.328,0,0,0,3,5.328V9.985H5.328V5.328h16.3v16.3H5.328V16.97H3v4.657a2.328,2.328,0,0,0,2.328,2.328h16.3a2.335,2.335,0,0,0,2.328-2.328V5.328A2.335,2.335,0,0,0,21.627,3Z" transform="translate(91.523 270.522)" stroke="rgba(0,0,0,0)" stroke-miterlimit="10" stroke-width="1" fill="url(#linear-gradient)"/>
+  </g>
+</svg>

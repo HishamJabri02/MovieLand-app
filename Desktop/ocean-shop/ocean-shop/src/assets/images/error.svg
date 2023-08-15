@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="129.152" height="129.152" viewBox="0 0 129.152 129.152">
+  <defs>
+    <filter id="Mask" x="0" y="0" width="129.152" height="129.152" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feFlood flood-opacity="0.071"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <linearGradient id="linear-gradient" x1="0.982" y1="1" x2="0.02" y2="0.112" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#4be1ec"/>
+      <stop offset="0.469" stop-color="#9931d6"/>
+      <stop offset="1" stop-color="#dc136e"/>
+    </linearGradient>
+  </defs>
+  <g id="Group_68090" data-name="Group 68090" transform="translate(-144 -127)">
+    <g transform="matrix(1, 0, 0, 1, 144, 127)" filter="url(#Mask)">
+      <g id="Mask-2" data-name="Mask" transform="translate(8 6)" fill="#f7f8fa" stroke="#fff" stroke-miterlimit="10" stroke-width="2">
+        <circle cx="56.576" cy="56.576" r="56.576" stroke="none"/>
+        <circle cx="56.576" cy="56.576" r="57.576" fill="none"/>
+      </g>
+    </g>
+    <path id="Intersection_19" data-name="Intersection 19" d="M15.934,83.524,52.339,53.455H.765A57.084,57.084,0,0,1,0,44.117c0-.186,0-.37,0-.554L92.308,0a56.947,56.947,0,0,1,6.5,6.153L65.661,36.946h47.277a57.379,57.379,0,0,1,.449,7.171q0,2.457-.206,4.864L24.147,90.546A57.2,57.2,0,0,1,15.934,83.524Z" transform="translate(152.002 145.58)" fill="#f0e" opacity="0.2"/>
+    <g id="ic_sentiment_dissatisfied_24px" transform="translate(178.365 159.366)">
+      <circle id="Ellipse_31" data-name="Ellipse 31" cx="4.001" cy="4.001" r="4.001" transform="translate(37.341 18.67)" fill="url(#linear-gradient)"/>
+      <circle id="Ellipse_32" data-name="Ellipse 32" cx="4.001" cy="4.001" r="4.001" transform="translate(16.003 18.67)" fill="url(#linear-gradient)"/>
+      <path id="Path_109" data-name="Path 109" d="M32.3,2A30.33,30.33,0,1,0,62.66,32.33,30.315,30.315,0,0,0,32.3,2Zm.03,54.594A24.264,24.264,0,1,1,56.594,32.33,24.257,24.257,0,0,1,32.33,56.594Zm0-18.2A16.667,16.667,0,0,0,16.8,49.011h5.065a12.058,12.058,0,0,1,20.928,0h5.065A16.667,16.667,0,0,0,32.33,38.4Z" transform="translate(-2 -2)" fill="url(#linear-gradient)"/>
+    </g>
+  </g>
+</svg>

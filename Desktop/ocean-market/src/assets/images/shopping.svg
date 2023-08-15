@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="130" height="129" viewBox="0 0 130 129">
+  <defs>
+    <filter id="Mask" x="0" y="0" width="130" height="129" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feFlood flood-opacity="0.071"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <linearGradient id="linear-gradient" x1="0.982" y1="1" x2="0.02" y2="0.112" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#4be1ec"/>
+      <stop offset="0.469" stop-color="#9931d6"/>
+      <stop offset="1" stop-color="#dc136e"/>
+    </linearGradient>
+  </defs>
+  <g id="Group_17882" data-name="Group 17882" transform="translate(8.363 5.563)">
+    <g transform="matrix(1, 0, 0, 1, -8.36, -5.56)" filter="url(#Mask)">
+      <g id="Mask-2" data-name="Mask" transform="translate(8 6)" fill="#f7f8fa" stroke="#fff" stroke-miterlimit="10" stroke-width="2">
+        <ellipse cx="57" cy="56.5" rx="57" ry="56.5" stroke="none"/>
+        <ellipse cx="57" cy="56.5" rx="58" ry="57.5" fill="none"/>
+      </g>
+    </g>
+    <path id="Intersection_19" data-name="Intersection 19" d="M15.908,83.388,52.254,53.369H.764A57.055,57.055,0,0,1,0,44.045c0-.185,0-.368,0-.553L92.158,0a56.92,56.92,0,0,1,6.485,6.143L65.554,36.887h47.2a57.223,57.223,0,0,1,.448,7.157q0,2.455-.206,4.856L24.108,90.4A56.935,56.935,0,0,1,15.908,83.388Z" transform="translate(0.544 12.435)" fill="#f0e" opacity="0.2"/>
+    <path id="Path_2309" data-name="Path 2309" d="M185.363,217.379l-3.651-34.339a3.823,3.823,0,0,0-3.735-3.907h-29.9a3.823,3.823,0,0,0-3.735,3.907l-3.651,34.339a4.3,4.3,0,0,0-.088.83,3.823,3.823,0,0,0,3.739,3.907h37.373a3.823,3.823,0,0,0,3.739-3.907A4.294,4.294,0,0,0,185.363,217.379ZM172.37,188.723v2.134a9.354,9.354,0,1,1-18.69,0v-2.134a2.921,2.921,0,0,1-1.868-2.751,2.806,2.806,0,1,1,5.606,0v4.885a5.612,5.612,0,1,0,11.213,0v-4.885a2.806,2.806,0,1,1,5.606,0A2.916,2.916,0,0,1,172.37,188.723Z" transform="translate(-105.879 -144.147)" stroke="rgba(0,0,0,0)" stroke-miterlimit="10" stroke-width="1" fill="url(#linear-gradient)"/>
+  </g>
+</svg>

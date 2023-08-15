@@ -1,0 +1,52 @@
+.mySwiper {
+  position: relative;
+}
+@media only screen and (max-width: 420px) and (min-width: 0px) {
+  .swiper {
+    width: 80% !important;
+  }
+}
+@media only screen and (max-width: 720px) {
+  .swiper-button-prev {
+    position: absolute;
+    left: 0;
+  }
+  .swiper-button-next {
+    position: absolute;
+    right: 0;
+  }
+}
+@media only screen and (min-width: 968px) {
+  .swiper-button-prev::after,
+  .swiper-button-next::after {
+    font-size: 30px !important;
+  }
+}
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  font-size: 20px;
+  color: black;
+}
+.swiper {
+  width: 90%;
+  height: 10vh;
+}
+
+.swiper-slide {
+  border: 1px solid rgb(230, 230, 230);
+  border-radius: 10px;
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.swiper-slide .brand-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  cursor: pointer;
+}

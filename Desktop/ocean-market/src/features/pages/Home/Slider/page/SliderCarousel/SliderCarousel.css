@@ -1,0 +1,58 @@
+@media only screen and (max-width: 720px) {
+  .mySlider .swiper-button-prev {
+    position: absolute;
+    left: 0;
+  }
+  .mySlider .swiper-button-next {
+    position: absolute;
+    right: 0;
+  }
+  .mySlider {
+    width: 100% !important;
+  }
+}
+@media only screen and (min-width: 968px) {
+  .mySlider .swiper-button-prev::after,
+  .mySlider .swiper-button-next::after {
+    font-size: 30px !important;
+  }
+}
+.mySlider .swiper-button-prev::after,
+.mySlider .swiper-button-next::after {
+  font-size: 20px;
+  color: black;
+}
+.mySlider .swiper-slide {
+  border-radius: 10px;
+  text-align: center;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+}
+.mySlider .swiper-slide img {
+  border-radius: 100%;
+  aspect-ratio: 1/1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: pointer;
+}
+.mySlider {
+  position: relative;
+  width: 80%;
+  margin: auto;
+}
+
+.mySlider .swiper {
+  width: 87% !important;
+  position: relative;
+  height: 22vh;
+}
+@media only screen and (max-width: 420px) and (min-width: 0px) {
+  .mySlider .swiper {
+    width: 80% !important;
+  }
+}
