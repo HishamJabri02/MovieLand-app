@@ -12,7 +12,7 @@ import { getAllFavoritesAsync } from "../state/getAllFavoritesAsync";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 function WishList() {
-  const {t , i18n}=useTranslation()
+  const { t, i18n } = useTranslation();
   const language = i18n.language;
   const dispatch = useDispatch();
   useEffect(() => {
@@ -31,7 +31,8 @@ function WishList() {
           fontSize: "22px",
           fontWeight: "bold",
           mb: 2,
-        }}>
+        }}
+      >
         {t("home.titles.favorite")}
       </Typography>
       {loading ? (
@@ -53,7 +54,8 @@ function WishList() {
               mt: 4,
               marginLeft: { xs: "10px", sm: "0" },
               marginRight: { xs: "18px", sm: "0" },
-            }}>
+            }}
+          >
             {favorites.map((product) => (
               <Grid
                 key={product.id}
@@ -62,29 +64,31 @@ function WishList() {
                 xs={6}
                 sm={4}
                 md={3}
-                sx={{ height: { xs: "250px", sm: "320px", md: "450px" } }}>
+                sx={{ height: { xs: "250px", sm: "320px", md: "450px" } }}
+              >
                 <Link
-                to={`/product-detail/:${product._id}`}
-                style={{
-                  textDecoration: "none",
-                  width: "100%",
-                  height: "100%",
-                }}>
-                <Product
-                  id={product._id}
-                  name={product.name}
-                  imageCover={product.image_cover}
-                  rating={product.rating}
-                  isNew={product.isNew}
-                  isLike={product.isLiked}
-                  listColors={product.colors}
-                  isActive={product.isActive}
-                  special={product.special}
-                  fav={true}
-                  name_ar={product.name_ar}
-                  code={language==="ar" ? product.code_ar : product.code_en }
+                  to={`/product-detail/:${product._id}`}
+                  style={{
+                    textDecoration: "none",
+                    width: "100%",
+                    height: "100%",
+                  }}
+                >
+                  <Product
+                    id={product._id}
+                    name={product.name}
+                    imageCover={product.image_cover}
+                    rating={product.rating}
+                    isNew={product.isNew}
+                    isLike={product.isLiked}
+                    listColors={product.colors}
+                    isActive={product.isActive}
+                    special={product.special}
+                    fav={true}
+                    name_ar={product.name_ar}
+                    code={language === "ar" ? product.code_ar : product.code_en}
                   />
-                  </Link>
+                </Link>
               </Grid>
             ))}
           </Grid>

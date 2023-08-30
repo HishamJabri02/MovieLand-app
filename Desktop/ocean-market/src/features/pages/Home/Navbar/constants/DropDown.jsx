@@ -49,9 +49,8 @@ const StyledMenu = styled((props) => (
 export default function DropDown() {
   const { i18n } = useTranslation();
   let langauge= i18n.language
-  langauge=langauge==="en"?"en":"ar"
+  langauge=langauge==="ar"?"ar":"en"
   const [anchorEl, setAnchorEl] = React.useState(null);
-  console.log(langauge)
   const [language, setLanguage] = React.useState(langauge); // default language is English
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -61,7 +60,6 @@ export default function DropDown() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
   const handleLanguageChange = (newLanguage) => {
     i18n.changeLanguage(newLanguage);
     setLanguage(newLanguage);
@@ -77,7 +75,7 @@ export default function DropDown() {
         aria-expanded={open ? "true" : undefined}
         disableElevation
         onClick={handleClick}
-        sx={{ color: open ? "blue" : "black", gap: "5px" }}
+        sx={{ color:"#fff", gap: "5px",height:"100%",pl:10}}
         endIcon={open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}>
         {language === "en" ? "En" : "Ar"}
       </Button>

@@ -16,9 +16,9 @@ import NotFound from "../../../../../../core/NotFound";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 function SubCategoriesItems({ categories }) {
-  const {i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const language = i18n.language;
-    const [activeItemId, setActiveItemId] = useState(null);
+  const [activeItemId, setActiveItemId] = useState(null);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const fetchProducts = async (id) => {
@@ -54,7 +54,8 @@ function SubCategoriesItems({ categories }) {
           "::-webkit-scrollbar": {
             display: "none",
           },
-        }}>
+        }}
+      >
         {categories.map((item) => (
           <ListItem
             disablePadding
@@ -72,7 +73,8 @@ function SubCategoriesItems({ categories }) {
               height: "100%",
             }}
             key={item._id}
-            onClick={() => handleItemClick(item._id)}>
+            onClick={() => handleItemClick(item._id)}
+          >
             <ListItemButton sx={{ p: 0, height: "100%" }}>
               <ListItemText
                 primary={language === "ar" ? item.name_ar : item.name}
@@ -101,7 +103,8 @@ function SubCategoriesItems({ categories }) {
           marginLeft: { xs: "10px", sm: "0" },
           marginRight: { xs: "18px", sm: "0" },
           justifyContent: products.length === 0 ? "center" : "",
-        }}>
+        }}
+      >
         {loading ? (
           <Box sx={{ height: "200px", position: "relative" }}>
             <GradiantCirculeLoading />
@@ -115,10 +118,12 @@ function SubCategoriesItems({ categories }) {
               xs={6}
               sm={4}
               md={3}
-              sx={{ height: { xs: "250px", sm: "320px", md: "450px" } }}>
+              sx={{ height: { xs: "250px", sm: "320px", md: "450px" } }}
+            >
               <Link
                 to={`/product-detail/:${product._id}`}
-                style={{ textDecoration: "none" }}>
+                style={{ textDecoration: "none" }}
+              >
                 <Product
                   id={product._id}
                   name={product.name}
@@ -130,7 +135,7 @@ function SubCategoriesItems({ categories }) {
                   isActive={product.isActive}
                   special={product.special}
                   name_ar={product.name_ar}
-                  code={language==="ar" ? product.code_ar : product.code_en }
+                  code={language === "ar" ? product.code_ar : product.code_en}
                 />
               </Link>
             </Grid>

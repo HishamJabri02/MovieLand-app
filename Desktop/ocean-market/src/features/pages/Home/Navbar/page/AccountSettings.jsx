@@ -12,8 +12,10 @@ import profile from "../../../../../assets/images/Profile.svg";
 import ProfileInformation from "./ProfileInformation";
 import { Link, useNavigate } from "react-router-dom";
 import { Logoutuser } from "../../../auth/Login/api/Logoutuser";
+import { useTranslation } from "react-i18next";
 
 function AccountSettings({ handleOpen }) {
+  const {t}=useTranslation()
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -96,7 +98,7 @@ function AccountSettings({ handleOpen }) {
               background: "transparent",
             },
           }}>
-          Personal Information
+          {t("generall.personal")}
         </MenuItem>
         <Link to="/orders" style={{ textDecoration: "none", color: "black" }}>
           <MenuItem
@@ -107,7 +109,7 @@ function AccountSettings({ handleOpen }) {
                 background: "transparent",
               },
             }}>
-            My Orders{" "}
+           {t("generall.order")}
           </MenuItem>
         </Link>
         <Link to="/adresses" style={{ textDecoration: "none", color: "black" }}>
@@ -119,7 +121,7 @@ function AccountSettings({ handleOpen }) {
                 background: "transparent",
               },
             }}>
-            My Addresses
+           {t("generall.address")}
           </MenuItem>
         </Link>
         <Divider />
@@ -129,7 +131,7 @@ function AccountSettings({ handleOpen }) {
             handleClose();
             LogoutProfile();
           }}>
-          Logout
+          {t("generall.Logout")}
         </MenuItem>
       </Menu>
     </Box>

@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
-import { Box, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Box, Typography, Link } from "@mui/material";
 import "../../assets/font/font.css";
 function HeaderFeature({ title, explain, link, linkName, sx, sxBox }) {
   return (
@@ -14,14 +13,20 @@ function HeaderFeature({ title, explain, link, linkName, sx, sxBox }) {
         mb: 3,
         alignItems: "center",
         ...sxBox,
-      }}>
+      }}
+    >
       <Typography
         sx={{
           fontFamily: "Lucida Bright !important",
           fontSize: { xs: "20px", sm: "24px" },
           fontWeight: "bold",
           textAlign: "center",
-        }}>
+          backgroundImage:
+            "linear-gradient(to left, #4BE1EC 0%, #9931D6 50%, #DC136E 100%)",
+          backgroundClip: "text",
+          textFillColor: "transparent",
+        }}
+      >
         {title}
       </Typography>
       <Box
@@ -30,18 +35,20 @@ function HeaderFeature({ title, explain, link, linkName, sx, sxBox }) {
           width: "100%",
           position: "relative",
           flexDirection: { xs: "column", sm: "unset" },
-        }}>
+        }}
+      >
         <Box sx={{ flexGrow: 1 }}>
           <Typography sx={{ textAlign: "center" }}>{explain}</Typography>
         </Box>
         <Link
-          to={link}
-          style={{
+          href={link}
+          sx={{
             textDecoration: "none",
             textAlign: "center",
-            position: window.innerWidth > 600 ? "absolute" : "unset",
+            position: { xs: "unset", sm: "absolute" },
             ...sx,
-          }}>
+          }}
+        >
           {linkName}
         </Link>
       </Box>

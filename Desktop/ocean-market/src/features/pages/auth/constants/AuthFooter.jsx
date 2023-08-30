@@ -5,6 +5,9 @@ import person from "../../../../assets/images/person.svg";
 import { useTranslation } from "react-i18next";
 const AuthFooter = ({ textLink, url, link }) => {
   const { t } = useTranslation();
+  const handleClick=()=>{
+    sessionStorage.setItem("guest","this is guest")
+  }
   return (
     <>
       <Typography
@@ -17,7 +20,7 @@ const AuthFooter = ({ textLink, url, link }) => {
         </Link>
       </Typography>
       <Divider sx={{ color: "gray", gap: 2, fontSize: "1rem" }}>{t("auth.generall.or")}</Divider>
-      <Link to={{ pathname: "/", search: "?guest=true" }} style={{textDecoration:"none"}}>
+      <Link to={"/"} onClick={handleClick}>
         <Button
           variant="outlined"
           sx={{

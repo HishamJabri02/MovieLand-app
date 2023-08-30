@@ -1,5 +1,5 @@
 import { Box, Grid } from "@mui/material";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import Navbar from "../../../Navbar/Navbar";
 import HeaderBrand from "./HeaderBrand";
@@ -9,35 +9,32 @@ import { useEffect, useState } from "react";
 import { getProductsApi } from "../../api/getProductsApi";
 import Footer from "../../../Footer/Page/Footer";
 import { useTranslation } from "react-i18next";
+import { brandsAsync } from "../../state/brandsAsync";
 function BrandsDetail() {
+  useEffect(() => {
+    dispatch(brandsAsync());
+  }, []);
   const { id } = useParams();
   const cleanId = id.substring(1);
-  const brand = useSelector((state) =>
-    state.brandsReducer.brands.filter((brand) => brand._id === cleanId)
-  );
+  let brand = useSelector((state) => state.brandsReducer.brands);
+  brand =
+    brand.length !== 0 ? brand.filter((bran) => bran._id === cleanId) : "";
   const [products, setProducts] = useState([]);
-  const {i18n } = useTranslation();
+  const { i18n } = useTranslation();
+  const dispatch = useDispatch();
+  const loading = useSelector((state) => state.brandsReducer.loading);
   const language = i18n.language;
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const products = await getProductsApi(cleanId);
-        setProducts(products);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    fetchData();
-  }, [cleanId]);
-  return (
+  return loading ? (
+    "Loading"
+  ) : (
     <Box>
       <Navbar />
       <Box>
         <HeaderBrand
-          brandImage={brand[0].imageCover}
-          brandLogo={brand[0].imageLogo}
-          information={brand[0].info}
-          brandName={brand[0].name}
+          brandImage={brand[0]?.imageCover}
+          brandLogo={brand[0]?.imageLogo}
+          information={brand[0]?.info}
+          brandName={brand[0]?.name}
         />
         <HomeContainer>
           <Grid
@@ -71,7 +68,9 @@ function BrandsDetail() {
                         listColors={product.colors}
                         isActive={product.isActive}
                         special={product.special}
-                        code={language==="ar" ? product.code_ar : product.code_en }
+                        code={
+                          language === "ar" ? product.code_ar : product.code_en
+                        }
                       />
                     </Link>
                   </Grid>

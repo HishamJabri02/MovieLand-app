@@ -27,15 +27,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { CheckOutAsync } from "../state/CheckOutAsync";
 import { useTranslation } from "react-i18next";
 import { ShoppingCartAsync } from "../../ShoppingCart/state/ShoppingCartAsync";
+import cash from "../../../../../assets/images/cash.png";
 import { confirmOrder } from "../api/confirmOrder";
-// import { clearBag } from "../../ShoppingCart/state/ShoppingCartSlice";
+import isFloat from "./isFloat";
 function CheckOutForm() {
   const { i18n, t } = useTranslation();
   const language = i18n.language;
   const loadingOrder = useSelector((state) => state.CheckOutReducer.loading);
   const errorMessage = useSelector((state) => state.CheckOutReducer.error);
   const navigate = useNavigate();
-  const items = useSelector((state) => state.ShoppingCartReducer.details);
   const [loading, setLoading] = useState(false);
   const [confirm, setConfirm] = useState(false);
   const [open, setOpen] = useState(false);
@@ -109,11 +109,18 @@ function CheckOutForm() {
         user_status: slectedUser,
       };
       handleClose();
-      await dispatch(CheckOutAsync(data));
+      const response = await dispatch(CheckOutAsync(data));
+      console.log(response);
       if (errorMessage) {
         setError(errorMessage);
         setOpen(true);
       } else {
+        if (slectedPayment === "electronic") {
+          window.open(
+            response.payload.data.payment.electronicInfo.url,
+            "_blank"
+          );
+        }
         navigate("/review");
         // const confirm = await confirmOrder(order.payload.data._id);
         // if (confirm.success) {
@@ -141,12 +148,14 @@ function CheckOutForm() {
             display: "flex",
             flexDirection: "column",
             p: 4,
-          }}>
+          }}
+        >
           <Box
             sx={{
               display: "flex",
               justifyContent: "flex-end",
-            }}>
+            }}
+          >
             <CloseIcon onClick={handleClose} sx={{ cursor: "pointer" }} />
           </Box>
           <Box
@@ -156,17 +165,43 @@ function CheckOutForm() {
               alignItems: "center",
               justifyContent: "space-evenly",
               height: "100%",
-            }}>
+            }}
+          >
             <img src={Like} style={{ width: "80px" }} />
             <Typography>Order Sent</Typography>
             <Typography sx={{ fontSize: { xs: "12px", sm: "16px" } }}>
               You Are About To Submit A Request Of{"  "}
-              {+details?.total_price_after_discount?.toFixed(2) +
-                +delevaryCharge?.address?.delevary_price?.toFixed(2) ||
-                "0" ||
-                +details?.total_price?.toFixed(2) +
-                  +delevaryCharge?.address?.delevary_price?.toFixed(2) ||
-                "0"}
+              {details?.total_price_after_discount
+                ? parseFloat(
+                    (
+                      (isFloat(details?.total_price_after_discount)
+                        ? details?.total_price_after_discount
+                        : parseFloat(
+                            details?.total_price_after_discount?.toFixed(2)
+                          )) +
+                      (isFloat(delevaryCharge?.address?.delevary_price)
+                        ? delevaryCharge?.address?.delevary_price
+                        : parseFloat(
+                            delevaryCharge?.address?.delevary_price?.toFixed(
+                              2
+                            ) || 0
+                          ))
+                    ).toFixed(2)
+                  )
+                : parseFloat(
+                    (
+                      (isFloat(details?.total_price)
+                        ? details?.total_price
+                        : parseFloat(details?.total_price?.toFixed(2))) +
+                      (isFloat(delevaryCharge?.address?.delevary_price)
+                        ? delevaryCharge?.address?.delevary_price
+                        : parseFloat(
+                            delevaryCharge?.address?.delevary_price?.toFixed(
+                              2
+                            ) || 0
+                          ))
+                    ).toFixed(2)
+                  )}
               {language === "ar" ? details.code_ar : details.code_en}
             </Typography>
             <GradiantButton name="Continue" onClick={handleSubmit} />
@@ -176,7 +211,12 @@ function CheckOutForm() {
       {loadingOrder && <GradiantCirculeLoading />}
       <Grid
         container
-        sx={{ px: { xs: 2, sm: 8, md: 10 }, justifyContent: "space-between" }}>
+        sx={{
+          px: { xs: 2, sm: 8, md: 10 },
+          justifyContent: "space-between",
+          direction: language === "ar" ? "rtl" : "ltr",
+        }}
+      >
         <Grid item xs={12} lg={7}>
           <Box
             sx={{
@@ -184,15 +224,17 @@ function CheckOutForm() {
               flexDirection: "column",
               gap: "15px",
               mb: 3,
-            }}>
+            }}
+          >
             <Typography
               sx={{
                 backgroundColor: "#F2F2F2",
                 p: 1,
                 pl: "28px",
                 fontWeight: "600",
-              }}>
-              01. Time Of Receipt
+              }}
+            >
+              01. {t("checkout.one")}
             </Typography>
             <Box
               sx={{
@@ -201,7 +243,8 @@ function CheckOutForm() {
                 pl: 1,
                 flexDirection: { xs: "column", md: "row" },
                 gap: { xs: "10px", sm: "0px" },
-              }}>
+              }}
+            >
               <Date date={date} setDate={setDate} />
               <TimeRangePicker time={time} setTime={setTime} />
             </Box>
@@ -212,15 +255,17 @@ function CheckOutForm() {
               flexDirection: "column",
               gap: "15px",
               mb: 3,
-            }}>
+            }}
+          >
             <Typography
               sx={{
                 backgroundColor: "#F2F2F2",
                 p: 1,
                 pl: "28px",
                 fontWeight: "600",
-              }}>
-              02. Delivery Address{" "}
+              }}
+            >
+              02. {t("checkout.two")}
             </Typography>
             <Box
               sx={{
@@ -228,7 +273,8 @@ function CheckOutForm() {
                 flexDirection: "column",
                 position: "relative",
                 minHeight: "80px",
-              }}>
+              }}
+            >
               {loading ? (
                 <GradiantCirculeLoading />
               ) : address && address.length !== 0 ? (
@@ -236,7 +282,8 @@ function CheckOutForm() {
                   aria-labelledby="demo-radio-buttons-group-label"
                   value={selectedAddress}
                   onChange={(event) => setSelectedAddress(event.target.value)}
-                  name="radio-buttons-group">
+                  name="radio-buttons-group"
+                >
                   {address.map((item) => (
                     <FormControlLabel
                       sx={{
@@ -256,20 +303,23 @@ function CheckOutForm() {
                               sx={{
                                 fontWeight: "bold",
                                 fontSize: { xs: "12px", sm: "16px" },
-                              }}>
+                              }}
+                            >
                               {item.city?.name.en}
                             </Typography>
                             <Typography
                               sx={{
                                 fontWeight: "bold",
                                 fontSize: { xs: "12px", sm: "16px" },
-                              }}>
+                              }}
+                            >
                               -{item.address?.name.en}
                             </Typography>
                           </Box>
                           <Box>
                             <Typography
-                              sx={{ fontSize: { xs: "12px", sm: "16px" } }}>
+                              sx={{ fontSize: { xs: "12px", sm: "16px" } }}
+                            >
                               {item?.description}
                             </Typography>
                           </Box>
@@ -292,15 +342,17 @@ function CheckOutForm() {
               flexDirection: "column",
               gap: "15px",
               mb: 3,
-            }}>
+            }}
+          >
             <Typography
               sx={{
                 backgroundColor: "#F2F2F2",
                 p: 1,
                 pl: "28px",
                 fontWeight: "600",
-              }}>
-              03. Shopping Options{" "}
+              }}
+            >
+              03. {t("checkout.three")}
             </Typography>
             <Box
               sx={{
@@ -308,7 +360,8 @@ function CheckOutForm() {
                 flexDirection: "column",
                 position: "relative",
                 minHeight: "80px",
-              }}>
+              }}
+            >
               {delevary && delevary.length !== 0 ? (
                 <Box sx={{ display: "flex", gap: "20px" }}>
                   {delevary.map((item) => (
@@ -324,7 +377,8 @@ function CheckOutForm() {
                             : "2px solid lightgray",
                         cursor: "pointer",
                       }}
-                      onClick={() => setSelectedDelevary(item._id)}>
+                      onClick={() => setSelectedDelevary(item._id)}
+                    >
                       <img
                         src={uploadImage(item.image)}
                         alt=""
@@ -348,51 +402,73 @@ function CheckOutForm() {
               flexDirection: "column",
               gap: "15px",
               mb: 3,
-            }}>
+            }}
+          >
             <Typography
               sx={{
                 backgroundColor: "#F2F2F2",
                 p: 1,
                 pl: "28px",
                 fontWeight: "600",
-              }}>
-              04. Payment Methods
+              }}
+            >
+              04. {t("checkout.four")}
             </Typography>
             <Box
               sx={{
                 display: "flex",
                 flexDirection: "column",
                 position: "relative",
-              }}>
-              <RadioGroup
-                aria-labelledby="demo-radio-buttons-group-label"
-                defaultValue=""
-                name="radio-buttons-group"
-                value={slectedPayment}
-                onChange={(event) => setSelectedPayment(event.target.value)}>
-                <FormControlLabel
+                minHeight: "80px",
+              }}
+            >
+              <Box sx={{ display: "flex", gap: "20px" }}>
+                <Box
                   sx={{
-                    pl: 3,
-                    border: "1px solid lightgray",
+                    width: "100px",
+                    height: "60px",
                     borderRadius: "10px",
-                    m: 0,
-                    mb: 2,
+                    border:
+                      slectedPayment === "cash"
+                        ? "2px solid #1976d2"
+                        : "2px solid lightgray",
+                    cursor: "pointer",
                   }}
-                  value="cash"
-                  control={<Radio checked={slectedPayment === "cash"} />}
-                  label={
-                    <Box sx={{ display: "flex", gap: 2 }}>
-                      <Typography
-                        sx={{
-                          fontWeight: "bold",
-                          fontSize: { xs: "12px", sm: "16px" },
-                        }}>
-                        Cash On delivery
-                      </Typography>
-                    </Box>
-                  }
-                />
-              </RadioGroup>
+                  onClick={() => setSelectedPayment("cash")}
+                >
+                  <img
+                    src={cash}
+                    alt=""
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      borderRadius: "10px",
+                    }}
+                  />
+                </Box>
+                {/* <Box
+                  sx={{
+                    width: "100px",
+                    height: "60px",
+                    borderRadius: "10px",
+                    border:
+                      slectedPayment === "electronic"
+                        ? "2px solid #1976d2"
+                        : "2px solid lightgray",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => setSelectedPayment("electronic")}>
+                  <img
+                    src={electronic}
+                    alt=""
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      borderRadius: "10px",
+                    }}
+                  />
+                </Box> */}
+              </Box>
             </Box>
           </Box>
           <Box
@@ -401,28 +477,32 @@ function CheckOutForm() {
               flexDirection: "column",
               gap: "15px",
               mb: 3,
-            }}>
+            }}
+          >
             <Typography
               sx={{
                 backgroundColor: "#F2F2F2",
                 p: 1,
                 pl: "28px",
                 fontWeight: "600",
-              }}>
-              05. User Status
+              }}
+            >
+              05. {t("checkout.five")}
             </Typography>
             <Box
               sx={{
                 display: "flex",
                 flexDirection: "column",
                 position: "relative",
-              }}>
+              }}
+            >
               <RadioGroup
                 aria-labelledby="demo-radio-buttons-group-label"
                 defaultValue=""
                 name="radio-buttons-group"
                 value={slectedUser}
-                onChange={(event) => setSelectedUser(event.target.value)}>
+                onChange={(event) => setSelectedUser(event.target.value)}
+              >
                 <FormControlLabel
                   sx={{
                     pl: 3,
@@ -439,7 +519,8 @@ function CheckOutForm() {
                         sx={{
                           fontWeight: "bold",
                           fontSize: { xs: "12px", sm: "16px" },
-                        }}>
+                        }}
+                      >
                         Personal Receipt
                       </Typography>
                     </Box>
@@ -461,7 +542,8 @@ function CheckOutForm() {
                         sx={{
                           fontWeight: "bold",
                           fontSize: { xs: "12px", sm: "16px" },
-                        }}>
+                        }}
+                      >
                         Send As A Gift
                       </Typography>
                     </Box>
@@ -483,7 +565,8 @@ function CheckOutForm() {
                         sx={{
                           fontWeight: "bold",
                           fontSize: { xs: "12px", sm: "16px" },
-                        }}>
+                        }}
+                      >
                         Shipping To The Provinces
                       </Typography>
                     </Box>
@@ -498,22 +581,25 @@ function CheckOutForm() {
               flexDirection: "column",
               gap: "15px",
               mb: 3,
-            }}>
+            }}
+          >
             <Typography
               sx={{
                 backgroundColor: "#F2F2F2",
                 p: 1,
                 pl: "28px",
                 fontWeight: "600",
-              }}>
-              06. Description
+              }}
+            >
+              06. {t("checkout.six")}
             </Typography>
             <Box
               sx={{
                 display: "flex",
                 flexDirection: "column",
                 position: "relative",
-              }}>
+              }}
+            >
               <TextField
                 id="outlined-basic"
                 label="Description"
@@ -532,10 +618,11 @@ function CheckOutForm() {
             position: "static",
             top: 0,
             mb: 2, // Add margin bottom to create space between the component and the next element
-          }}>
+          }}
+        >
           <Box sx={{ border: "1px solid #B5B5B5", p: 2, position: "relative" }}>
             <Typography sx={{ fontSize: "18px", fontWeight: "bold", py: 2 }}>
-              Order Summary
+              {t("checkout.summary")}
             </Typography>
             {loadingCart ? (
               <GradiantCirculeLoading />
@@ -548,7 +635,8 @@ function CheckOutForm() {
                     gap: "10px",
                     flexDirection: "column",
                     mb: 2,
-                  }}>
+                  }}
+                >
                   <CheckOutInput
                     title={t("home.product.items")}
                     value={details?.quantity}
@@ -570,12 +658,14 @@ function CheckOutForm() {
                       display: "flex",
                       justifyContent: "space-between",
                       alignItems: "center",
-                    }}>
-                    <Typography>Delivery Charge</Typography>
+                    }}
+                  >
+                    <Typography>{t("checkout.delevary")}</Typography>
                     <Typography
                       sx={{
                         fontSize: { xs: "12px", sm: "1rem" },
-                      }}>
+                      }}
+                    >
                       {delevaryCharge?.address?.delevary_price.toFixed(2) ||
                         "0"}
                       {language === "ar" ? details.code_ar : details.code_en}
@@ -587,25 +677,54 @@ function CheckOutForm() {
                       display: "flex",
                       justifyContent: "space-between",
                       alignItems: "center",
-                    }}>
+                    }}
+                  >
                     <Typography>{t("home.product.total")}</Typography>
                     <Typography
                       sx={{
                         fontSize: { xs: "12px", sm: "1rem" },
-                      }}>
-                      {+details?.total_price_after_discount?.toFixed(2) +
-                        +delevaryCharge?.address?.delevary_price?.toFixed(2) ||
-                        "0" ||
-                        +details?.total_price?.toFixed(2) +
-                          +delevaryCharge?.address?.delevary_price?.toFixed(
-                            2
-                          ) ||
-                        "0"}
+                      }}
+                    >
+                      {details?.total_price_after_discount
+                        ? parseFloat(
+                            (
+                              (isFloat(details?.total_price_after_discount)
+                                ? details?.total_price_after_discount
+                                : parseFloat(
+                                    details?.total_price_after_discount?.toFixed(
+                                      2
+                                    )
+                                  )) +
+                              (isFloat(delevaryCharge?.address?.delevary_price)
+                                ? delevaryCharge?.address?.delevary_price
+                                : parseFloat(
+                                    delevaryCharge?.address?.delevary_price?.toFixed(
+                                      2
+                                    ) || 0
+                                  ))
+                            ).toFixed(2)
+                          )
+                        : parseFloat(
+                            (
+                              (isFloat(details?.total_price)
+                                ? details?.total_price
+                                : parseFloat(
+                                    details?.total_price?.toFixed(2)
+                                  )) +
+                              (isFloat(delevaryCharge?.address?.delevary_price)
+                                ? delevaryCharge?.address?.delevary_price
+                                : parseFloat(
+                                    delevaryCharge?.address?.delevary_price?.toFixed(
+                                      2
+                                    ) || 0
+                                  ))
+                            ).toFixed(2)
+                          )}
                       {language === "ar" ? details.code_ar : details.code_en}
                     </Typography>
                   </Box>
                 </Box>
-                <GradiantButton name="Buy now" onClick={handleOpen} />
+                <GradiantButton name={t("buttons.buy")} onClick={handleOpen} />
               </>
             )}
           </Box>

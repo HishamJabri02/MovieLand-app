@@ -67,7 +67,7 @@
       "Terms and Condition":"Terms and Condition",
       "Developer Information":"Developer Information",
       "Privacy Policy":"Privacy Policy",
-      "download":"Download App"
+      "download":"Address"
     },
     "title":"Get The Best Online Shopping Experience With Ocean Market. We Sell Products Of All Categories. Easy And Fast Delivery. Best Offers."
   },
@@ -109,7 +109,8 @@
     "go":"Go To Shopping",
     "checkout":"CheckOut",
     "update":"Update Details",
-    "shop":"Shop Now"
+    "shop":"Shop Now",
+    "buy":"Buy Now"
   },
   "home": {
     "errors":{
@@ -160,7 +161,16 @@
     "price": "kwd",
     "unavaible": "Unavaible Product",
     "new": "New",
-    "lang":"Language"
+    "lang":"Language",
+    "curr":"currency",
+    "check":"Checkout",
+    "color":"Color :",
+    "size":"Size :",
+    "counter":"Counter :",
+    "personal":"Personal Information",
+    "order":"My Orders",
+    "address":"My Addresses",
+    "Logout":"Log out"
   },
   "privacy":{
     "name":"Privacy Policy",
@@ -283,5 +293,25 @@
       }      
     },
     "finally":"We Would Like To Thank All Users Who Use The E-Store Application And Support Us In Achieving Our Goals. We Truly Appreciate Your Trust In Us And Promise To Provide High-Quality Service And Excellent Products For Online Shopping."
+  },
+  "checkout":{
+  "one":"Time Of Receipt",
+  "two":"Delivery Address",
+  "three":"Shopping Options",
+  "four":"Payment Methods",
+  "five":"User Status",
+  "six":"Description",
+  "label":"Delivery Time",
+  "date":"Delivery Date",
+  "summary":"Order Summary",
+  "delevary":"Delivery Charge"
+  },
+  "address":{
+    "empty":{
+      "label":"No Address Add Yet",
+      "explain":"Tap Add Address Button Below To Add Your First Shipping Address And Start Shopping",
+      "button":"Add New Address"
+    },
+    "label":"Add New Address"
   }
 }

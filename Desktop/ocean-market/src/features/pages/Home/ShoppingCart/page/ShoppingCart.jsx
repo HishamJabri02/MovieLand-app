@@ -27,20 +27,26 @@ function ShoppingCart() {
           alignItems: "center",
           mt: 4,
           gap: { xs: 5, sm: 10 },
-        }}>
+        }}
+      >
         <Typography
           sx={{
             fontFamily: "Lucida Bright !important",
             fontSize: "25px",
             fontWeight: "bold",
-          }}>
+            backgroundImage:
+              "linear-gradient(to left, #4BE1EC 0%, #9931D6 50%, #DC136E 100%)",
+            backgroundClip: "text",
+            textFillColor: "transparent",
+          }}
+        >
           {t("home.titles.cart")}
         </Typography>
         {loading ? (
           <Box sx={{ position: "relative", height: "400px" }}>
             <GradiantCirculeLoading />
           </Box>
-        ) : details && details.items && details.items.length === 0 ? (
+        ) : !details || !details.items || details.items.length === 0 ? (
           <EmptyFeature
             img={Empty}
             problem={t("home.errors.cart.title")}

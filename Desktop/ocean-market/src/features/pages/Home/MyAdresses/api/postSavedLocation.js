@@ -17,6 +17,7 @@ export const postSavedLocation = async (data) => {
     );
     return response.data;
   } catch (error) {
+    console.log(error)
     throw error.response.data.userMessage
       ? error.response.data.userMessage
       : error.response.data.message;

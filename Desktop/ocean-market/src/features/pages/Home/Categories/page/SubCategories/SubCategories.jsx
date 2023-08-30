@@ -25,12 +25,11 @@ function SubCategories() {
     }
     fetchData();
   }, [cleanId]);
-  console.log(categories);
   return (
     <>
       <Navbar />
       {loading ? (
-        <Box sx={{ height: "200px", position: "relative" }}>
+        <Box sx={{ height: "400px", position: "relative" }}>
           <GradiantCirculeLoading />
         </Box>
       ) : categories && categories.length > 0 ? (

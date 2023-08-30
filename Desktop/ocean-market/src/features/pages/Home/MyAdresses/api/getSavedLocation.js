@@ -1,21 +1,24 @@
 /* eslint-disable no-useless-catch */
 import axiosData from "../../../../api/axiosData";
 import decryptionState from "../../../auth/helpers/decryptionState";
-export const createOrder = async (data) => {
+export const getSavedLocation = async () => {
   const token = localStorage.getItem("token");
   const secretKey = localStorage.getItem("ver");
   const decrypted = decryptionState(token, secretKey);
-  const url =localStorage.getItem("curr") ? `/v2/api/orders?cur=${localStorage.getItem("curr")}` : "/v2/api/orders";
-
   try {
-    const response = await axiosData.post(url, data, {
-      headers: {
-        Authorization: `Bearer ${decrypted}`,
-      },
-    });
-    console.log(response);
+    const response = await axiosData.get(
+      "api/users/saved_location",
+      {
+        headers: {
+          Authorization: `Bearer ${decrypted}`,
+        },
+      }
+    );
     return response.data;
   } catch (error) {
-    throw error.response.data.message;
+    console.log(error)
+    throw error.response.data.userMessage
+      ? error.response.data.userMessage
+      : error.response.data.message;
   }
 };

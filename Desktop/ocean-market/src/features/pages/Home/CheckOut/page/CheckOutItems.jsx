@@ -4,15 +4,13 @@ import { Box, Typography } from "@mui/material";
 import { useEffect } from "react";
 import GradiantCirculeLoading from "../../../../../core/GradiantCirculeLoading";
 import { useTranslation } from "react-i18next";
-import { ShoppingCartAsync } from "../../ShoppingCart/state/ShoppingCartAsync";
 
 function CheckOutItems({details}) {
   const loading = useSelector((state) => state.ShoppingCartReducer.loading);
-  const {i18n}=useTranslation()
+  const {t,i18n}=useTranslation()
   const language=i18n.language
   return (
     <>
-
     {
       loading ? 
   <GradiantCirculeLoading/>
@@ -59,11 +57,11 @@ function CheckOutItems({details}) {
                 overflow: "hidden",
                 whiteSpace: "pre",
               }}>
-              {language==="ar" ? item.name_ar :item.product_name}
+              {language==="ar" ? item.product_id.name_ar :item.product_name}
             </Typography>
             <Box sx={{ display: "flex", gap: 1 }}>
               <Box sx={{ display: "flex", gap: 1 }}>
-                <span style={{ fontSize: "12px" }}>Color:</span>
+                <span style={{ fontSize: "12px" }}>{t("generall.color")}</span>
                 <span
                   style={{
                     width: "15px",
@@ -74,13 +72,13 @@ function CheckOutItems({details}) {
                   }}></span>
               </Box>
               <Box sx={{ display: "flex", gap: 1 }}>
-                <span style={{ fontSize: "12px" }}>Size:</span>
+                <span style={{ fontSize: "12px" }}>{t("generall.size")}</span>
                 <span style={{ fontSize: "12px" }}>
                 {item.size.name}
                 </span>
               </Box>
               <Box sx={{ display: "flex", gap: 1 }}>
-                <span style={{ fontSize: "12px" }}>counter:</span>
+                <span style={{ fontSize: "12px" }}>{t("generall.counter")}</span>
                 <span style={{ fontSize: "12px" }}>{details.quantity}</span>
               </Box>
             </Box>

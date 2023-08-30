@@ -1,0 +1,15 @@
+.carousel-container,
+.carousel-container .react-multi-carousel-track,
+.carousel-item-padding-40-px {
+  height: 100%;
+}
+.carousel-item-padding-40-px {
+  padding-right: 20px;
+}
+.react-multiple-carousel__arrow--right {
+  right: 0px;
+  z-index: 4;
+}
+.react-multiple-carousel__arrow--left {
+  left: 0px;
+}

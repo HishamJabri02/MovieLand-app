@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { categoriesAsync } from "../../state/categoriesAsync";
 import { useDispatch, useSelector } from "react-redux";
-import { ImageList, ImageListItem, ImageListItemBar } from "@mui/material";
+import { Box, ImageList, ImageListItem, ImageListItemBar } from "@mui/material";
 import HomeContainer from "../../../../../../components/Home/HomeContainer";
 import "./AllCategories.css";
 import Navbar from "../../../Navbar/Navbar";
@@ -11,9 +11,9 @@ import Footer from "../../../Footer/Page/Footer";
 import GradiantCirculeLoading from "../../../../../../core/GradiantCirculeLoading";
 import { useTranslation } from "react-i18next";
 const AllCategories = () => {
-  const {i18n } = useTranslation();
-  const language = i18n.language; 
-   const dispatch = useDispatch();
+  const { i18n } = useTranslation();
+  const language = i18n.language;
+  const dispatch = useDispatch();
   let categories = useSelector((state) => state.categoriesReducer.categories);
   useEffect(() => {
     dispatch(categoriesAsync());
@@ -98,7 +98,8 @@ const AllCategories = () => {
               },
             }}
             variant="quilted"
-            gap={10}>
+            gap={10}
+          >
             {categories.map((item, index) => {
               let sizeImageIndex = index % sizeImages.length;
               let sizeImage = sizeImages[sizeImageIndex];
@@ -135,7 +136,8 @@ const AllCategories = () => {
                       lg: `span ${sizeImage.row} !important`,
                     },
                   }}
-                  key={index}>
+                  key={index}
+                >
                   <Link to={`/subCategories/:${item._id}`}>
                     <div className="image-wrapper">
                       <img
@@ -165,7 +167,9 @@ const AllCategories = () => {
             })}
           </ImageList>
         ) : (
-          <GradiantCirculeLoading />
+          <Box sx={{ position: "relative", height: "400px" }}>
+            <GradiantCirculeLoading />
+          </Box>
         )}
       </HomeContainer>
       <Footer />

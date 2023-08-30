@@ -8,6 +8,7 @@ const TextFieldAddress = ({
   name,
   text = "text",
   props,
+  option=false
 }) => {
   const { i18n } = useTranslation();
   const language = i18n.language;
@@ -16,7 +17,7 @@ const TextFieldAddress = ({
       defaultValue=""
       name={name}
       control={control}
-      rules={{ required: true }}
+      rules={{required:option ?false :true }}
       render={({ field, fieldState }) => {
         const inputProps = {};
         return (

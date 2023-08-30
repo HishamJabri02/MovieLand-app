@@ -12,45 +12,57 @@ import { addProductApi } from "../../../ShoppingCart/api/addProductApi";
 import { uploadImage } from "../../../../../../core/uploadImage";
 import Footer from "../../../Footer/Page/Footer";
 import CustomSnackbar from "../../../../../../core/CustomSnackbar";
-import heart from "../../../../../../assets/images/gradiantHeart.svg"
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useTranslation } from "react-i18next";
+import { WishListAsync } from "../../../WishList/state/WishListAsync";
+import SimilarProducts from "../SimilarProducts/SimilarProducts";
 function ProductsDetails() {
-  const {t , i18n}=useTranslation()
+  const { t, i18n } = useTranslation();
   const language = i18n.language;
   const { id } = useParams();
   const cleanId = id.substring(1);
   const dispatch = useDispatch();
-  const [load , setLoad]=useState(false)
+  const [load, setLoad] = useState(false);
+  const [love, setLove] = useState();
   useEffect(() => {
     dispatch(getProductDetailsAsync(cleanId));
     return () => {
       dispatch(clearProductDetails());
     };
   }, [dispatch, cleanId]);
-  const addProduct=async(product_id,size_id,color_id,count)=>{
-    setLoad(true)
-    try{
-     await addProductApi({product_id,size_id,color_id,count})
-     setLoad(false)
-     setMessage("Product Added Successfully")
-     setAdd(true)
-    } catch(error){
-      setLoad(false)
-      setError(error)
-      setAdd(true)
+  const addProduct = async (product_id, size_id, color_id, count) => {
+    setLoad(true);
+    try {
+      await addProductApi({ product_id, size_id, color_id, count });
+      setLoad(false);
+      setMessage("Product Added Successfully");
+      setAdd(true);
+    } catch (error) {
+      setLoad(false);
+      setError(error);
+      setAdd(true);
     }
-  }
-  const loading = useSelector((state) => state.getProductDetailsReducer.loading);
-  const details = useSelector((state) => state.getProductDetailsReducer.productDetails);
+  };
+  const loading = useSelector(
+    (state) => state.getProductDetailsReducer.loading
+  );
+  const details = useSelector(
+    (state) => state.getProductDetailsReducer.productDetails
+  );
+  const messageLove = useSelector(
+    (state) => state.WishListReducer.message.data
+  );
+  const errorLove = useSelector((state) => state.WishListReducer.error);
   const [open, setOpen] = useState(false);
   const [add, setAdd] = useState(false);
-  const [message,setMessage]=useState("")
-  const [error,setError]=useState("")
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedColor, setSelectedColor] = useState("");
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedPrice, setSelectedPrice] = useState("");
   const [quantity, setQuantity] = useState(1);
+  const [like, setLike] = useState(details.isLike);
   useEffect(() => {
     setSelectedImage(details.special?.color?.images[0] || details.image_cover);
     setSelectedColor(details.special?.color);
@@ -76,6 +88,23 @@ function ProductsDetails() {
       setQuantity(quantity - 1);
     }
   }
+  const handleFavoriteClick = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await dispatch(WishListAsync(details._id));
+      if (response.meta.requestStatus === "rejected") {
+        setLove(true);
+        return;
+      } else {
+        setLike((prev) => !prev);
+        setLove(true);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  console.log(selectedColor);
+  console.log(selectedSize);
   return (
     <Box>
       <Navbar />
@@ -86,373 +115,439 @@ function ProductsDetails() {
       )}
       {details && details.colors && (
         <>
-        {load &&<GradiantCirculeLoading />}
-        <>
-        <Box
-          sx={{
-            width: { sm: "80%", md: "auto", lg: "80%" },
-            margin: { sm: "auto", md: "0", lg: "auto" },
-            pt: { xs: 0, md: 4 },
-            display: "flex",
-            pl: { xs: 0, md: 4, lg: 0 },
-            flexDirection: { xs: "column", md: "row" },
-            alignItems: { xs: "center", sm: "unset" },
-            gap: { xs: "20px", md: "0px" },
-          }}>
-          <Box
-            sx={{
-              flexBasis: { md: "15%", lg: "20%", xl: "15%" },
-              order: { xs: "1", md: "0" },
-            }}>
-            <Stack
-              sx={{
-                gap: 2,
-                mr: { md: 2, lg: 4 },
-                flexDirection: { xs: "row", md: "column" },
-              }}>
-              {selectedColor && selectedColor && selectedColor.images ? (
-                selectedColor.images.map((img, index) => (
-                  <Box
-                  key={index}
-                  sx={{
-                    borderRadius: "10px",
-                    border: "1px solid lightgray",
-                    aspectRatio: { xs: "0", md: "1/1" },
-                    flexBasis: "20%",
-                  }}>
-                    <img
-                      src={uploadImage(img)}
-                      alt=""
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                        borderRadius: "10px",
-                        aspectRatio: "1/1",
-                      }}
-                      onClick={() => handleImageClick(img)}
-                      />
-                  </Box>
-                ))
-              ) : (
-                <Box
-                sx={{
-                  borderRadius: "10px",
-                  border: "1px solid lightgray",
-                  aspectRatio: { xs: "0", md: "1/1" },
-                  flexBasis: "20%",
-                }}>
-                  <img
-                    src={uploadImage(selectedImage)}
-                    alt=""
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      borderRadius: "10px",
-                      aspectRatio: "1/1",
-                    }}
-                  />
-                </Box>
-              )}
-            </Stack>
-          </Box>
-          <Box
-            sx={{
-              aspectRatio: { md: "4/5" },
-              height: { xs: "auto", md: "70vh", lg: "80vh" },
-              borderRadius: { xs: "0", md: "25px" },
-              position: "relative",
-              mr: { md: 2, lg: 6 },
-            }}>
-            <img
-              src={uploadImage(selectedImage)}
-              alt=""
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                borderRadius: { xs: "0", md: "25px" },
-              }}
-            />
-            <Typography
-              sx={{
-                position: "absolute",
-                width: { xs: "40px", sm: "55px" },
-                height: { xs: "30px", sm: "40px" },
-                lineHeight: { xs: "30px", sm: "40px" },
-                textAlign: "center",
-                backgroundColor: `${details.isNew ? "#1492E6" : "#DB3022"}`,
-                borderRadius: { xs: "15px", sm: "10px" },
-                display: `${
-                  !details.isNew && details.special.discount_ratio === null
-                  ? "none"
-                  : "block"
-                }`,
-                color: "#fff",
-                top: "15px",
-                left: "15px",
-                fontSize: { xs: "12px", sm: "1rem" },
-              }}>
-              {details.isNew
-                ? "New"
-                : "-" + Math.floor(details.special.discount_ratio) + "%"}
-            </Typography>
-          </Box>
-          <Box
-            sx={{
-              width: "100%",
-              display: "flex",
-              flexDirection: "column",
-              order: { xs: "2", md: "0" },
-              px: 2,
-            }}>
+          {load && <GradiantCirculeLoading />}
+          <>
             <Box
               sx={{
-                justifyContent: { xs: "space-between", md: "unset" },
+                width: { sm: "80%", md: "auto", lg: "80%" },
+                margin: { sm: "auto", md: "0", lg: "auto" },
+                pt: { xs: 0, md: 4 },
                 display: "flex",
-                gap: { xs: 0, md: 16 },
-                alignItems: "center",
-                mt: { md: 0, lg: 4 },
-                mb: 1,
+                pl: { xs: 0, md: 4, lg: 0 },
+                flexDirection: { xs: "column", md: "row" },
+                alignItems: { xs: "center", sm: "unset" },
+                gap: { xs: "20px", md: "0px" },
               }}>
-              <Typography variant="h6" sx={{fontSize:{xs:"16px",sm:"1.25rem"}}}>{language==="ar"?details?.name_ar|| details.name: details.name}</Typography>
-              <Typography
-                variant="subtitle1"
-                fontWeight="bold"
+              <Box
                 sx={{
-                  color:
-                  !details.isActive ||
-                  details.special.size?.price === null ||
-                  details.special.quantity <= 0
-                      ? "#DB0000"
-                      : "#095EF9",
-                      fontSize:{xs:"14px",sm:"1rem"}
+                  flexBasis: { md: "15%", lg: "20%", xl: "15%" },
+                  order: { xs: "1", md: "0" },
                 }}>
-                {!details.isActive ||
-                details.special.size?.price === null ||
-                details.special.quantity <= 0
-                ? `( ${t("home.product.unavailble")} )`
-                : `( ${t("home.product.availble")} )`}
-              </Typography>
-            </Box>
-            <Rating
-              name="read-only"
-              value={details.rating}
-              readOnly
-              sx={{ fontSize: {xs:"1rem",sm:"2rem"}, mb: 1 }}
-              />
-            <Typography
-              variant="subtitle1"
-              fontFamily="poppins"
-              sx={{ color: "#707070", mb: 1,fontSize:{xs:"12px",sm:"1rem"} }}>
-              {details.materials.map((type, index) => (
-                <span key={index}> {type} /</span>
-                ))}
-            </Typography>
-            <Typography
-              variant="subtitle1"
-              fontFamily="poppins"
-              sx={{ color: "#969696", mb: 1,fontSize:{xs:"12px",sm:"1rem"} }}>
-              {language==="ar"?details?.info_ar|| details.info: details.info}
-            </Typography>
-            <Box
-              sx={{
-                display: "flex",
-                gap: "30px",
-                alignItems: "flex-end",
-                mb: 1,
-              }}>
-              {selectedPrice?.price && (
-                <Typography
-                variant="body2"
-                sx={{ color: "#095EF9", fontSize: {xs:"16px",sm:"22px"} }}>
-                  {selectedPrice.price_after_discount
-                    ? selectedPrice.price_after_discount.toFixed(2)
-                    : selectedPrice.price.toFixed(2)}{" "}
-                  {language==="ar" ? details.code_ar : details.code_en }
-                </Typography>
-              )}
-              {selectedPrice?.price_after_discount && (
-                <Typography
-                  variant="subtitle2"
+                <Stack
                   sx={{
-                    textDecoration: "line-through",
-                    color: "gray",
-                    fontSize: {xs:"14px",sm:"1.1rem"},
+                    gap: 2,
+                    mr: { md: 2, lg: 4 },
+                    flexDirection: { xs: "row", md: "column" },
                   }}>
-                  {selectedPrice.price.toFixed(2)} {language==="ar" ? details.code_ar : details.code_en }
-                </Typography>
-              )}
-            </Box>
-
-            <Box sx={{ mb: 1 }}>
-              {details && details.colors && details.colors.length !== 0 && (
-                <>
-                  <Typography sx={{ mb: 1,fontSize:{xs:"14px",sm:"1rem"} }}>{t("home.product.color")}</Typography>
-                  <Box sx={{ display: "flex", gap:2, mb: 2,flexWrap:"wrap" }}>
-                    {details.colors.map((color, index) => (
-                      <Typography
-                      key={index}
+                  {selectedColor && selectedColor && selectedColor.images ? (
+                    selectedColor.images.map((img, index) => (
+                      <Box
+                        key={index}
+                        sx={{
+                          borderRadius: "10px",
+                          border: "1px solid lightgray",
+                          aspectRatio: { xs: "0", md: "1/1" },
+                          flexBasis: "20%",
+                        }}>
+                        <img
+                          src={uploadImage(img)}
+                          alt=""
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "cover",
+                            borderRadius: "10px",
+                            aspectRatio: "1/1",
+                          }}
+                          onClick={() => handleImageClick(img)}
+                        />
+                      </Box>
+                    ))
+                  ) : (
+                    <Box
                       sx={{
-                        backgroundColor: color.color_hex,
-                        width: {xs:"25px",sm:"30px"},
-                        height: {xs:"25px",sm:"30px"},
-                        borderRadius: "100%",
-                        border:
-                            selectedColor?._id === color?._id
-                              ? "2px solid blue"
-                              : "1px solid lightgray",
+                        borderRadius: "10px",
+                        border: "1px solid lightgray",
+                        aspectRatio: { xs: "0", md: "1/1" },
+                        flexBasis: "20%",
+                      }}>
+                      <img
+                        src={uploadImage(selectedImage)}
+                        alt=""
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                          borderRadius: "10px",
+                          aspectRatio: "1/1",
+                        }}
+                      />
+                    </Box>
+                  )}
+                </Stack>
+              </Box>
+              <Box
+                sx={{
+                  aspectRatio: { md: "4/5" },
+                  height: { xs: "auto", md: "70vh", lg: "80vh" },
+                  borderRadius: { xs: "0", md: "25px" },
+                  position: "relative",
+                  mr: { md: 2, lg: 6 },
+                }}>
+                <img
+                  src={uploadImage(selectedImage)}
+                  alt=""
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    borderRadius: { xs: "0", md: "25px" },
+                  }}
+                />
+                <Typography
+                  sx={{
+                    position: "absolute",
+                    width: { xs: "40px", sm: "55px" },
+                    height: { xs: "30px", sm: "40px" },
+                    lineHeight: { xs: "30px", sm: "40px" },
+                    textAlign: "center",
+                    backgroundColor: `${details.isNew ? "#1492E6" : "#C20B5D"}`,
+                    borderRadius: { xs: "15px", sm: "10px" },
+                    display: `${
+                      !details.isNew &&
+                      (details.special?.discount_ratio === null ||
+                        details.special?.discount_ratio === 0 ||
+                        !details.special?.discount_ratio)
+                        ? "none"
+                        : "block"
+                    }`,
+                    color: "#fff",
+                    top: "15px",
+                    left: "15px",
+                    fontSize: { xs: "12px", sm: "1rem" },
+                  }}>
+                  {details.isNew
+                    ? "New"
+                    : Math.floor(details?.special?.discount_ratio) + "%"}
+                </Typography>
+              </Box>
+              <Box
+                sx={{
+                  width: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  order: { xs: "2", md: "0" },
+                  px: 2,
+                }}>
+                <Box
+                  sx={{
+                    justifyContent: { xs: "space-between", md: "unset" },
+                    display: "flex",
+                    gap: { xs: 0, md: 16 },
+                    alignItems: "center",
+                    mt: { md: 0, lg: 4 },
+                    mb: 1,
+                  }}>
+                  <Typography
+                    variant="h6"
+                    sx={{ fontSize: { xs: "16px", sm: "1.25rem" } }}>
+                    {language === "ar"
+                      ? details?.name_ar || details.name
+                      : details.name}
+                  </Typography>
+                  <Typography
+                    variant="subtitle1"
+                    fontWeight="bold"
+                    sx={{
+                      color:
+                        !details.isActive ||
+                        details.special?.size?.price === null ||
+                        details.special?.quantity <= 0
+                          ? "#DB0000"
+                          : "#095EF9",
+                      fontSize: { xs: "14px", sm: "1rem" },
+                    }}>
+                    {!details.isActive ||
+                    details.special?.size?.price === null ||
+                    details.special?.quantity <= 0
+                      ? `( ${t("home.product.unavailble")} )`
+                      : `( ${t("home.product.availble")} )`}
+                  </Typography>
+                </Box>
+                <Rating
+                  name="read-only"
+                  value={details.rating}
+                  readOnly
+                  sx={{ fontSize: { xs: "1rem", sm: "2rem" }, mb: 1 }}
+                />
+                <Typography
+                  variant="subtitle1"
+                  fontFamily="poppins"
+                  sx={{
+                    color: "#707070",
+                    mb: 1,
+                    fontSize: { xs: "12px", sm: "1rem" },
+                  }}>
+                  {details.materials.map((type, index) => (
+                    <span key={index}> {type} /</span>
+                  ))}
+                </Typography>
+                <Typography
+                  variant="subtitle1"
+                  fontFamily="poppins"
+                  sx={{
+                    color: "#969696",
+                    mb: 1,
+                    fontSize: { xs: "12px", sm: "1rem" },
+                  }}>
+                  {language === "ar"
+                    ? details?.info_ar || details.info
+                    : details.info}
+                </Typography>
+                <Box
+                  sx={{
+                    display: "flex",
+                    gap: "30px",
+                    alignItems: "flex-end",
+                    mb: 1,
+                  }}>
+                  {selectedPrice?.price && (
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        color: "#095EF9",
+                        fontSize: { xs: "16px", sm: "22px" },
+                      }}>
+                      {selectedPrice.price_after_discount
+                        ? selectedPrice.price_after_discount.toFixed(2)
+                        : selectedPrice.price.toFixed(2)}{" "}
+                      {language === "ar" ? details.code_ar : details.code_en}
+                    </Typography>
+                  )}
+                  {selectedPrice?.price_after_discount && (
+                    <Typography
+                      variant="subtitle2"
+                      sx={{
+                        textDecoration: "line-through",
+                        color: "gray",
+                        fontSize: { xs: "14px", sm: "1.1rem" },
+                      }}>
+                      {selectedPrice.price.toFixed(2)}{" "}
+                      {language === "ar" ? details.code_ar : details.code_en}
+                    </Typography>
+                  )}
+                </Box>
+
+                <Box sx={{ mb: 1 }}>
+                  {details && details.colors && details.colors.length !== 0 && (
+                    <>
+                      <Typography
+                        sx={{ mb: 1, fontSize: { xs: "14px", sm: "1rem" } }}>
+                        {t("home.product.color")}
+                      </Typography>
+                      <Box
+                        sx={{
+                          display: "flex",
+                          gap: 2,
+                          mb: 2,
+                          flexWrap: "wrap",
+                        }}>
+                        {details.colors.map((color, index) => (
+                          <Typography
+                            key={index}
+                            sx={{
+                              backgroundColor: color.color_hex,
+                              width: { xs: "25px", sm: "30px" },
+                              height: { xs: "25px", sm: "30px" },
+                              borderRadius: "100%",
+                              border:
+                                selectedColor?._id === color?._id
+                                  ? "2px solid blue"
+                                  : "1px solid lightgray",
                             }}
                             onClick={() => {
                               setSelectedColor(color);
                               setSelectedImage(
                                 color?.images[0] || details.image_cover
-                                );
-                                setSelectedPrice(color?.sizes[0]);
-                                setSelectedSize(color?.sizes[0]);
-                                setQuantity(1);
-                              }}></Typography>
-                    ))}
-                  </Box>
-                </>
-              )}
-              {details && details.colors && details.colors.length !== 0 && (
-                <>
-                  <Typography sx={{ mb: 1,fontSize:{xs:"14px",sm:"1rem"}}}>{t("home.product.size")}</Typography>
-                  <Grid
-                    container
-                    sx={{
-                      display: "flex",
-                      gap: 2,
-                      mb: 2,
-                    }}>
-                    {details.colors
-                      .filter((color) => color._id === selectedColor?._id)
-                      .map((color) =>
-                      color.sizes.map((size) => (
-                        <Grid
-                        item
-                        key={size._id}
-                        sx={{
-                          fontSize:{xs:"12px",sm:"16px"},
-                          minWidth: {xs:"45px",sm:"85px"},
-                          height: "35px",
-                          textAlign: "center",
-                          lineHeight: "35px",
-                          border:
-                          selectedSize?._id === size?._id
-                          ? "2px solid blue"
-                          : "2px solid #C4C4C4",
-                          borderRadius: "10px",
-                        }}
-                            onClick={() => {
-                              setSelectedSize(size);
-                              setSelectedPrice(size);
+                              );
+                              setSelectedPrice(color?.sizes[0]);
+                              setSelectedSize(color?.sizes[0]);
                               setQuantity(1);
-                            }}>
-                            {size.name}
-                          </Grid>
-                        ))
-                        )}
-                  </Grid>
-                </>
-              )}
-            </Box>
-            <Typography sx={{ mb: 2,fontSize:{xs:"14px",sm:"1rem"} }}>{t("home.product.quantity")}</Typography>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                border: "1px solid lightgrey",
-                width: { xs: "70%", lg: "45%" },
-                height: "7vh",
-                mb: 4,
-              }}>
-              <Button
-                sx={{
-                  backgroundColor: "#F5F5F5",
-                  flexBasis: "35%",
-                  height: "100%",
-                }}
-                onClick={handleIncrementQuantity}>
-                +
-              </Button>
-              <Typography sx={{ flexBasis: "30%", textAlign: "center" }}>
-                {quantity}
-              </Typography>
-              <Button
-                onClick={handleDecrementQuantity}
-                sx={{
-                  backgroundColor: "#F5F5F5",
-                  flexBasis: "35%",
-                  height: "100%",
-                }}>
-                -
-              </Button>
-            </Box>
-            <Box
-              sx={{
-                width: { xs: "100%", md: "70%" },
-                display: "flex",
-                gap: "30px",
-              }}>
-              <GradiantButton
-                disabled={
-                  !details.isActive ||
-                  details.special.size?.price === null ||
-                  details.special.quantity <= 0
-                    ? true
-                    : false
-                }
-                name={t("buttons.add")}
-                sx={{ flexBasis: "80%" }}
-                onClick={() =>
-                  addProduct(
-                    details._id,
-                    selectedSize._id,
-                    selectedColor._id,
-                    quantity
-                    )
-                  }
+                            }}></Typography>
+                        ))}
+                      </Box>
+                    </>
+                  )}
+                  {details && details.colors && details.colors.length !== 0 && (
+                    <>
+                      <Typography
+                        sx={{ mb: 1, fontSize: { xs: "14px", sm: "1rem" } }}>
+                        {t("home.product.size")}
+                      </Typography>
+                      <Grid
+                        container
+                        sx={{
+                          display: "flex",
+                          gap: 2,
+                          mb: 2,
+                        }}>
+                        {details.colors
+                          .filter((color) => color._id === selectedColor?._id)
+                          .map((color) =>
+                            color.sizes.map((size) => (
+                              <Grid
+                                item
+                                key={size._id}
+                                sx={{
+                                  fontSize: { xs: "12px", sm: "16px" },
+                                  minWidth: { xs: "45px", sm: "85px" },
+                                  height: "35px",
+                                  textAlign: "center",
+                                  lineHeight: "35px",
+                                  border:
+                                    selectedSize?._id === size?._id
+                                      ? "2px solid blue"
+                                      : "2px solid #C4C4C4",
+                                  borderRadius: "10px",
+                                }}
+                                onClick={() => {
+                                  setSelectedSize(size);
+                                  setSelectedPrice(size);
+                                  setQuantity(1);
+                                }}>
+                                {size.name}
+                              </Grid>
+                            ))
+                          )}
+                      </Grid>
+                    </>
+                  )}
+                </Box>
+                <Typography
+                  sx={{ mb: 2, fontSize: { xs: "14px", sm: "1rem" } }}>
+                  {t("home.product.quantity")}
+                </Typography>
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    border: "1px solid lightgrey",
+                    width: { xs: "70%", lg: "45%" },
+                    height: "7vh",
+                    mb: 4,
+                  }}>
+                  <Button
+                    sx={{
+                      backgroundColor: "#F5F5F5",
+                      flexBasis: "35%",
+                      height: "100%",
+                    }}
+                    onClick={handleIncrementQuantity}>
+                    +
+                  </Button>
+                  <Typography sx={{ flexBasis: "30%", textAlign: "center" }}>
+                    {quantity}
+                  </Typography>
+                  <Button
+                    onClick={handleDecrementQuantity}
+                    sx={{
+                      backgroundColor: "#F5F5F5",
+                      flexBasis: "35%",
+                      height: "100%",
+                    }}>
+                    -
+                  </Button>
+                </Box>
+                <Box
+                  sx={{
+                    width: { xs: "100%", md: "70%" },
+                    display: "flex",
+                    gap: "30px",
+                  }}>
+                  <GradiantButton
+                    disabled={
+                      !details.isActive ||
+                      details.special?.size?.price === null ||
+                      details.special?.quantity <= 0
+                        ? true
+                        : false
+                    }
+                    name={t("buttons.add")}
+                    sx={{ flexBasis: "80%" }}
+                    onClick={() =>
+                      addProduct(
+                        details._id,
+                        selectedSize._id,
+                        selectedColor._id,
+                        quantity
+                      )
+                    }
                   />
-              <Box
-                sx={{
-                  backgroundColor: "#F5F5F5",
-                  borderRadius: "100%",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  width: "50px",
-                }}>
-                  {!details.isLiked ? 
-                  
-                  <FavoriteBorderIcon
-                  sx={{ fontSize: "30px", color: "#3167EB" }}
-                  />
-                  :
-                  <img src={heart} />
-              }
+                  <Box
+                    sx={{
+                      backgroundColor: "#F5F5F5",
+                      borderRadius: "100%",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      width: "50px",
+                    }}>
+                    {like ? (
+                      <FavoriteIcon
+                        sx={{
+                          width: { xs: "25px", sm: "30px", md: "40px" },
+                          height: { xs: "25px", sm: "30px", md: "40px" },
+                          padding: { xs: "4px", sm: "8px" },
+                          backgroundColor: "#fff",
+                          borderRadius: "100%",
+                          filter: "drop-shadow(2px 2px 4px #E6E6E6)",
+                          color: "#C20B5D",
+                          cursor: "pointer",
+                        }}
+                        onClick={(event) => handleFavoriteClick(event)}
+                      />
+                    ) : (
+                      <FavoriteBorderIcon
+                        sx={{
+                          width: { xs: "25px", sm: "30px", md: "40px" },
+                          height: { xs: "25px", sm: "30px", md: "40px" },
+                          padding: { xs: "4px", sm: "8px" },
+                          backgroundColor: "#fff",
+                          borderRadius: "100%",
+                          filter: "drop-shadow(2px 2px 4px #E6E6E6)",
+                          color: "#C20B5D",
+                          cursor: "pointer",
+                        }}
+                        onClick={(event) => handleFavoriteClick(event)}
+                      />
+                    )}
+                  </Box>
+                </Box>
               </Box>
             </Box>
-          </Box>
-        </Box>
+            <SimilarProducts id={cleanId} />
             <Footer />
+          </>
         </>
-      </>
       )}
       <CustomSnackbar
         open={open}
         type="error"
         message="There is enough quantity in the warehouse"
         setOpen={setOpen}
-        />
-        <CustomSnackbar
+      />
+      <CustomSnackbar
         open={add}
-        type={error? "error":"success"}
+        type={error ? "error" : "success"}
         message={error ? error : message}
         setOpen={setAdd}
-        />
+      />
+      <CustomSnackbar
+        type={errorLove ? "error" : "success"}
+        message={errorLove ? errorLove : messageLove}
+        open={love}
+        setOpen={setLove}
+      />
     </Box>
   );
 }

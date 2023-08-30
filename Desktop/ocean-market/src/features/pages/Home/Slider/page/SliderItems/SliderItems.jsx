@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -6,10 +6,11 @@ import "swiper/css/pagination";
 import "./SliderItems.css";
 import { Autoplay } from "swiper";
 import Navbar from "../../../Navbar/Navbar";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import GradiantCirculeLoading from "../../../../../../core/GradiantCirculeLoading";
 import { uploadImage } from "../../../../../../core/uploadImage";
-import CloseIcon from '@mui/icons-material/Close';
+import CloseIcon from "@mui/icons-material/Close";
+import { sliderAsync } from "../../state/sliderAsync";
 export default function SliderItems() {
   const navigate = useNavigate();
   const progressCircle = useRef(null);
@@ -18,7 +19,12 @@ export default function SliderItems() {
     progressCircle.current.style.setProperty("--progress", 1 - progress);
     progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
   };
-  const token=localStorage.getItem("token")
+  useEffect(() => {
+    if (stories.length === 0) {
+      dispatch(sliderAsync());
+    }
+  }, []);
+  const dispatch = useDispatch();
   const { id } = useParams();
   const loading = useSelector((state) => state.sliderReducer.loading);
   const stories = useSelector((state) => state.sliderReducer.stories);
@@ -27,11 +33,7 @@ export default function SliderItems() {
       setTimeout(() => {
         if (swiper.isEnd) {
           swiper.autoplay.stop();
-          if(token){
-            navigate("/")
-          }else{
-            navigate("/?guest=true");
-          }
+          navigate("/");
         }
       }, 11000);
     }
@@ -39,10 +41,25 @@ export default function SliderItems() {
   return (
     <>
       <Navbar />
-      <Link to={token ? "/" :"/?guest=true"} style={{width:"20px",height:"20px",backgroundColor:"black"}}>
-          <CloseIcon sx={{color:"#fff",position: "absolute",top:"90px",right:{xs:"20px",md:"30px"},
-    fontSize: {xs:"25px",md:"30px"},cursor:"pointer",zIndex:"3",backgroundColor:"black",borderRadius:"100%",opacity:".6"}}/>
-    </Link>
+      <Link
+        to={"/"}
+        style={{ width: "20px", height: "20px", backgroundColor: "black" }}
+      >
+        <CloseIcon
+          sx={{
+            color: "#fff",
+            position: "absolute",
+            top: "130px",
+            right: { xs: "20px", md: "30px" },
+            fontSize: { xs: "25px", md: "30px" },
+            cursor: "pointer",
+            zIndex: "3",
+            backgroundColor: "black",
+            borderRadius: "100%",
+            opacity: ".6",
+          }}
+        />
+      </Link>
       <Swiper
         className="slider"
         centeredSlides={true}
@@ -69,7 +86,8 @@ export default function SliderItems() {
         }}
         modules={[Autoplay]}
         onSlideChange={onSlideChange}
-        onAutoplayTimeLeft={onAutoplayTimeLeft}>
+        onAutoplayTimeLeft={onAutoplayTimeLeft}
+      >
         {loading ? (
           <GradiantCirculeLoading />
         ) : (

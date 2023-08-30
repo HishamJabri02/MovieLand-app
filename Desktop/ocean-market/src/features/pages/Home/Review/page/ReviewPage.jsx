@@ -294,7 +294,7 @@ function ReviewPage() {
                     m: 0,
                     mb: 2,
                   }}
-                  value="cash"
+                  value={payment.method}
                   control={<Radio />}
                   label={
                     <Box sx={{ display: "flex", gap: 2 }}>
@@ -303,7 +303,9 @@ function ReviewPage() {
                           fontWeight: "bold",
                           fontSize: { xs: "12px", sm: "16px" },
                         }}>
-                        Cash On delivery
+                        {payment.method === "cash"
+                          ? "Cash On delivery"
+                          : "Electronic"}
                       </Typography>
                     </Box>
                   }

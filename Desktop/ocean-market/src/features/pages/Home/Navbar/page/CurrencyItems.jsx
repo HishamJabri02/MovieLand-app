@@ -96,8 +96,7 @@ import { uploadImage } from "../../../../../core/uploadImage";
         }}}>{item.name_en} ( {item.code_en} )</Typography>
        </Box>
        <Divider/>
-       </MenuItem>
-            
+       </MenuItem> 
           ))}
         </Menu>
       </Box>

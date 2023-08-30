@@ -1,7 +1,6 @@
 /* eslint-disable no-useless-escape */
 import * as YUP from "yup";
 const phoneRegExp = /^(?!0)((\+[1-9]{1,4}[ \-]*)|(\([0-9]{1,5}\)[ \-]*)|([0-9]{1,5})[ \-]*)*?[0-9]{3,4}?[ \-]*[0-9]{3,4}?$/;
-
 const validationSchema = YUP.object({
   fullName: YUP.string()
     .required("full Name is required")

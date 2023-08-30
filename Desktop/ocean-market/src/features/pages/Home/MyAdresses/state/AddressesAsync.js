@@ -1,13 +1,14 @@
 /* eslint-disable no-useless-catch */
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getCitiesWithRegions } from "../api/getCitieswithRegions";
+import { postSavedLocation } from "../api/postSavedLocation";
 export const AddressesAsync = createAsyncThunk(
   "addresses/AddressesAsync",
-  async () => {
+  async (data) => {
     try {
-      const response = await getCitiesWithRegions();
+      const response = await postSavedLocation(data);
       return response;
     } catch (error) {
+      console.log(error)
       throw error;
     }
   }

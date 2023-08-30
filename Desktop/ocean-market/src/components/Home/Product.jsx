@@ -14,11 +14,11 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import { useState } from "react";
 import { WishListAsync } from "../../features/pages/Home/WishList/state/WishListAsync";
-import heart from "../../assets/images/gradiantHeart.svg";
 import { getAllFavoritesAsync } from "../../features/pages/Home/WishList/state/getAllFavoritesAsync";
 import CustomSnackbar from "../../core/CustomSnackbar";
 import { uploadImage } from "../../core/uploadImage";
 import { useTranslation } from "react-i18next";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 function Product({
   id,
   name_ar,
@@ -30,11 +30,11 @@ function Product({
   isLike,
   fav,
   special,
-  code
+  code,
 }) {
-  const { t,i18n } = useTranslation();
-  const language = i18n.language; 
-   const dispatch = useDispatch();
+  const { t, i18n } = useTranslation();
+  const language = i18n.language;
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const message = useSelector((state) => state.WishListReducer.message.data);
   const error = useSelector((state) => state.WishListReducer.error);
@@ -79,7 +79,7 @@ function Product({
         }}>
         <CardMedia
           sx={{ flexBasis: "80%", backgroundPosition: "unset" }}
-          image={  uploadImage(special?.color?.images[0] || imageCover)}>
+          image={uploadImage(special?.color?.images[0] || imageCover)}>
           {!isActive ||
             special.size?.price === null ||
             (special.quantity <= 0 && (
@@ -116,19 +116,20 @@ function Product({
             height: { xs: "30px", sm: "40px" },
             lineHeight: { xs: "30px", sm: "40px" },
             textAlign: "center",
-            backgroundColor: `${isNew ? "#1492E6" : "#DB3022"}`,
+            backgroundColor: `${isNew ? "#1492E6" : "#C20B5D"}`,
             borderRadius: { xs: "15px", sm: "10px" },
             display: `${
-              !isNew && special.discount_ratio === null ? "none" : "block"
+              !isNew &&
+              (special.discount_ratio === null || special.discount_ratio === 0)
+                ? "none"
+                : "block"
             }`,
             color: "#fff",
             top: "15px",
             left: "15px",
             fontSize: { xs: "12px", sm: "1rem" },
           }}>
-          {isNew
-            ? t("generall.new")
-            : "-" + Math.floor(special.discount_ratio) + "%"}
+          {isNew ? t("generall.new") : Math.floor(special.discount_ratio) + "%"}
         </Typography>
         <CardContent
           sx={{
@@ -145,7 +146,7 @@ function Product({
               right: { xs: "5px", sm: "10px" },
             }}>
             {like ? (
-              <Box
+              <FavoriteIcon
                 sx={{
                   width: { xs: "25px", sm: "30px", md: "40px" },
                   height: { xs: "25px", sm: "30px", md: "40px" },
@@ -153,13 +154,10 @@ function Product({
                   backgroundColor: "#fff",
                   borderRadius: "100%",
                   filter: "drop-shadow(2px 2px 4px #E6E6E6)",
-                  display: "flex",
-                  alignItems: "center",
-                  mr: 1,
+                  color: "#C20B5D",
                 }}
-                onClick={(event) => handleFavoriteClick(event)}>
-                <img src={heart} alt="" width="100%" />
-              </Box>
+                onClick={(event) => handleFavoriteClick(event)}
+              />
             ) : (
               <FavoriteBorderIcon
                 sx={{
@@ -169,7 +167,7 @@ function Product({
                   backgroundColor: "#fff",
                   borderRadius: "100%",
                   filter: "drop-shadow(2px 2px 4px #E6E6E6)",
-                  color: "gray",
+                  color: "#C20B5D",
                 }}
                 onClick={(event) => handleFavoriteClick(event)}
               />

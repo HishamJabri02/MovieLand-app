@@ -1,6 +1,7 @@
-import axiosData from "../../../../api/axiosData"; 
+import axiosData from "../../../../api/axiosData";
 import decryptionState from "../../../auth/helpers/decryptionState";
-export const shoppingCartApi = async () => {
+export const getRelatedProductApi = async (id) => {
+  const url= localStorage.getItem("curr")? `/api/products/realated/${id}?cur=${localStorage.getItem("curr")}`:`/api/products/realated/${id}`
   const token = localStorage.getItem("token")
     ? localStorage.getItem("token")
     : null;
@@ -11,19 +12,14 @@ export const shoppingCartApi = async () => {
     token === null || secretKey === null
       ? ""
       : decryptionState(token, secretKey);
-      const url =localStorage.getItem("curr")? `/api/carts?cur=${localStorage.getItem("curr")}`:`/api/carts`
   try {
-    const response = await axiosData.get(
-        url ,
-      {
-        headers: {
-          Authorization: `Bearer ${decrypted}`,
-        },
-      }
-    );
+    const response = await axiosData.get(url, {
+      headers: {
+        Authorization: `Bearer ${decrypted}`,
+      },
+    });
     return response.data;
   } catch (error) {
-    console.log(error)
     throw error.response.data.userMessage
       ? error.response.data.userMessage
       : error.response.data.message;

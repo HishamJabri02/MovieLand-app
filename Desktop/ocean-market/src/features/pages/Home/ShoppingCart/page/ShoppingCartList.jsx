@@ -12,6 +12,7 @@ import { ShoppingCartAsync } from "../state/ShoppingCartAsync";
 import { deleteProductApi } from "../api/deleteProductApi";
 import UpdateFromCart from "./UpdateFromCart";
 import { getProductDetailsApi } from "../../Products/api/getProductDetailsApi";
+import FavoriteIcon from '@mui/icons-material/Favorite';
 function ShoppingCartList({details}) {
   const {t , i18n}=useTranslation()
   const language = i18n.language
@@ -148,8 +149,8 @@ function ShoppingCartList({details}) {
               justifyContent: "flex-end",
               gap: 1,
             }}>
-              {
-                item.product_id.isLiked ?<img src={heart} style={{width:"30px",display:window.innerWidth<600 ?"none" :"block"}}/> :
+              { 
+                item.product_id.isLiked ? <FavoriteIcon sx={{width:"30px",display:{xs:"none" ,sm:"block"}}} /> :
                 <FavoriteBorderOutlinedIcon
                 sx={{
                   display: { xs: "none", sm: "block" },

@@ -10,8 +10,8 @@ import { Link } from "react-router-dom";
 import Footer from "../../../Footer/Page/Footer";
 import { useTranslation } from "react-i18next";
 function ProductsList({ type }) {
-  const { t,i18n } = useTranslation();
-  const language =i18n.language
+  const { t, i18n } = useTranslation();
+  const language = i18n.language;
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
@@ -34,7 +34,6 @@ function ProductsList({ type }) {
     };
     fetchData();
   }, [type]);
-
   const fetchMoreData = async () => {
     try {
       const newProducts = await allProductsApi(type, page);
@@ -48,30 +47,31 @@ function ProductsList({ type }) {
       setError(error);
     }
   };
-
   return (
     <>
-    {
-loading &&
-      <Box sx={{ height: "200px", position: "relative", width: "100%" }}>
+      {loading && (
+        <Box sx={{ height: "200px", position: "relative", width: "100%" }}>
           <GradiantCirculeLoading />
         </Box>
-    }
+      )}
       <InfiniteScroll
         dataLength={products.length}
         next={fetchMoreData}
         hasMore={hasMore}
         loader={<h4>Loading...</h4>}
-        endMessage={<Footer />}>
-        <HomeContainer sx={{px:{xs:0,md:4}}}>
+        endMessage={<Footer />}
+      >
+        <HomeContainer sx={{ px: { xs: 0, md: 4 } }}>
           <Grid
             container
             spacing={2}
             sx={{
               mt: 4,
-              marginLeft:{xs:"1px",sm:"0"},
+              marginLeft: { xs: "1px", sm: "0" },
               marginRight: { xs: "18px", sm: "0" },
-            }}>
+              minHeight: "50vh",
+            }}
+          >
             {products.map((product) => (
               <Grid
                 key={product._id}
@@ -80,10 +80,12 @@ loading &&
                 xs={6}
                 sm={4}
                 md={3}
-                sx={{ height: { xs: "250px", sm: "320px", md: "450px" } }}>
+                sx={{ height: { xs: "250px", sm: "320px", md: "450px" } }}
+              >
                 <Link
                   to={`/product-detail/:${product._id}`}
-                  style={{ textDecoration: "none" }}>
+                  style={{ textDecoration: "none" }}
+                >
                   <Product
                     id={product._id}
                     name={product.name}
@@ -95,7 +97,7 @@ loading &&
                     isActive={product.isActive}
                     special={product.special}
                     name_ar={product.name_ar}
-                    code={language==="ar" ? product.code_ar : product.code_en }
+                    code={language === "ar" ? product.code_ar : product.code_en}
                   />
                 </Link>
               </Grid>

@@ -19,6 +19,9 @@ import ShoppingCartReducer from "../features/pages/Home/ShoppingCart/state/Shopp
 import getAllCountriesReducer from "../features/pages/Home/MyAdresses/state/getAllCountriesSlice";
 import getAllCitiesReducer from "../features/pages/Home/MyAdresses/state/getAllCitiesSlice";
 import getRegionFromCityReducer from "../features/pages/Home/MyAdresses/state/getRegionFromCitySlice";
+import AddressesReducer from "../features/pages/Home/MyAdresses/state/AddressesSlice";
+import getSavedLocationReducer from "../features/pages/Home/MyAdresses/state/getSavedLocationSlice";
+import getRelatedProductReducer from "../features/pages/Home/Products/state/getRelatedProductSlice";
 export default configureStore({
   reducer: {
     auth: loginReducer,
@@ -40,6 +43,9 @@ export default configureStore({
     CurrencyReducer,
     getAllCountriesReducer,
     getAllCitiesReducer,
-    getRegionFromCityReducer
+    getRegionFromCityReducer,
+    AddressesReducer,
+    getSavedLocationReducer,
+    getRelatedProductReducer
   },
 });

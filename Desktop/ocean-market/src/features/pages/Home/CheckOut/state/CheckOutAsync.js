@@ -9,7 +9,6 @@ export const CheckOutAsync = createAsyncThunk(
       console.log(response);
       return response;
     } catch (error) {
-      console.log(error);
       throw error;
     }
   }

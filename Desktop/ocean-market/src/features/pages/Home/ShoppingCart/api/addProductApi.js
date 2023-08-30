@@ -11,7 +11,7 @@ export const addProductApi = async (data) => {
     token === null || secretKey === null
       ? ""
       : decryptionState(token, secretKey);
-      const url = `/api/carts/add-item?cur=${localStorage.getItem("curr")}`
+      const url =localStorage.getItem("curr") ? `/api/carts/add-item?cur=${localStorage.getItem("curr")}` : "/api/carts/add-item" 
   try {
     const response = await axiosData.put(
         url , data,

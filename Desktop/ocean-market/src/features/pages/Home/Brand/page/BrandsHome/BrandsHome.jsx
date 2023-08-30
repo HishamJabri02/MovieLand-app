@@ -14,7 +14,7 @@ import { uploadImage } from "../../../../../../core/uploadImage";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 function BrandsHome() {
-  const {i18n,t } = useTranslation();
+  const { i18n, t } = useTranslation();
   const language = i18n.language;
   const dispatch = useDispatch();
   useEffect(() => {
@@ -71,8 +71,8 @@ function BrandsHome() {
             <Swiper
               onSwiper={handleSwiper}
               navigation={{
-                prevEl: ".swiper-button-prev",
-                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev-brand",
+                nextEl: ".swiper-button-next-brand",
               }}
               slidesPerView={1}
               spaceBetween={4}
@@ -106,7 +106,8 @@ function BrandsHome() {
                 },
               }}
               index={index}
-              modules={[Autoplay, Pagination, Navigation]}>
+              modules={[Autoplay, Pagination, Navigation]}
+            >
               {brands.map((item) => (
                 <SwiperSlide key={item._id}>
                   <Link
@@ -114,7 +115,8 @@ function BrandsHome() {
                     style={{
                       width: "100%",
                       height: "100%",
-                    }}>
+                    }}
+                  >
                     <img
                       src={uploadImage(item.imageLogo)}
                       className="brand-image"
@@ -124,8 +126,14 @@ function BrandsHome() {
               ))}
             </Swiper>
           )}
-          <div className="swiper-button-prev" onClick={handlePrev}></div>
-          <div className="swiper-button-next" onClick={handleNext}></div>
+          <div
+            className="swiper-button-prev swiper-button-prev-brand"
+            onClick={handlePrev}
+          ></div>
+          <div
+            className="swiper-button-next swiper-button-next-brand"
+            onClick={handleNext}
+          ></div>
         </div>
       )}
     </Box>

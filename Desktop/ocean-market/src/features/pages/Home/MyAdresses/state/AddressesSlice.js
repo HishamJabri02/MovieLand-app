@@ -2,7 +2,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { AddressesAsync } from "./AddressesAsync";
 const initialState = {
-  citieswithRegions: [],
+  address: [],
   loading: false,
   error: null,
 };
@@ -17,7 +17,7 @@ const AddressesSlice = createSlice({
         state.error = null;
       })
       .addCase(AddressesAsync.fulfilled, (state, action) => {
-        state.citieswithRegions = action.payload.data;
+        state.address = action.payload;
         state.loading = false;
       })
       .addCase(AddressesAsync.rejected, (state, action) => {

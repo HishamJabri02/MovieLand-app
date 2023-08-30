@@ -10,7 +10,9 @@ function NotFound({ reason, explain }) {
         alignItems: "center",
         mt: 4,
         gap: "10px",
-      }}>
+        height: "400px",
+      }}
+    >
       <img src={error} alt="" width="80px" />
       <Typography>{reason}</Typography>
       <Typography sx={{ color: "lightgray", fontSize: "14px" }}>

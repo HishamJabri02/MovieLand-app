@@ -15,7 +15,7 @@ function CheckOutOrder() {
       }}>
       <Box sx={{ border: "1px solid #B5B5B5", p: 2 }}>
         <Typography sx={{ fontSize: "18px", fontWeight: "bold", py: 2 }}>
-          Order Summary
+         {t("checkout.summary")}
         </Typography>
         <CheckOutItems />
         <Box

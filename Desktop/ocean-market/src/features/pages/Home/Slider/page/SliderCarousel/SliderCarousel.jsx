@@ -85,7 +85,8 @@ export default function SliderCarousel() {
             },
           }}
           index={index}
-          modules={[Pagination, Navigation]}>
+          modules={[Pagination, Navigation]}
+        >
           {loading ? (
             <GradiantCirculeLoading />
           ) : (
@@ -99,7 +100,8 @@ export default function SliderCarousel() {
                     borderRadius: "100%",
                     width: "95%",
                     backgroundColor: "#fff",
-                  }}>
+                  }}
+                >
                   <img src={uploadImage(item.photo_url)} alt="" />
                   <span
                     style={{
@@ -112,7 +114,8 @@ export default function SliderCarousel() {
                       background:
                         "linear-gradient(to left, #4BE1EC 0%, #9931D6 50%, #DC136E 100%)",
                       borderRadius: "100%",
-                    }}></span>
+                    }}
+                  ></span>
                 </Link>
               </SwiperSlide>
             ))

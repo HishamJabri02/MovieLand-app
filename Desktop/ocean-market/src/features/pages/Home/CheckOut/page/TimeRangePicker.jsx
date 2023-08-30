@@ -5,10 +5,11 @@ import { AdapterLuxon } from "@mui/x-date-pickers/AdapterLuxon";
 import { SingleInputTimeRangeField } from "@mui/x-date-pickers-pro/SingleInputTimeRangeField";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { DateTime } from "luxon";
+import { useTranslation } from "react-i18next";
 
 export default function TimeRangePicker({ time, setTime }) {
+  const {t}=useTranslation()
   const [formattedTime, setFormattedTime] = React.useState("");
-
   React.useEffect(() => {
     if (time) {
       const formatted = DateTime.fromJSDate(time).toFormat("h:mm");
@@ -28,7 +29,8 @@ export default function TimeRangePicker({ time, setTime }) {
     <LocalizationProvider dateAdapter={AdapterLuxon}>
       <DemoContainer components={["SingleInputTimeRangeField"]}>
         <SingleInputTimeRangeField
-          label="From - To"
+        dir="ltr"
+          label={t("checkout.label")}
           value={time}
           onChange={handleTimeChange}
           inputFormat="h:mm"

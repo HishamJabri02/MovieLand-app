@@ -6,7 +6,7 @@ const PrivateRoute = () => {
   const [token, setToken] = useState(
     sessionStorage.getItem("token") || localStorage.getItem("token")
   );
-  const isGuest = new URLSearchParams(location.search).get("guest") === "true";
+  const isGuest = sessionStorage.getItem("guest")
   useEffect(() => {
     setToken(sessionStorage.getItem("token") || localStorage.getItem("token"));
   }, [location]);

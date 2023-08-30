@@ -5,7 +5,9 @@ import Footer from "../../Footer/Page/Footer";
 import sad from "../../../../../assets/images/Inside.svg";
 import GradiantButton from "../../../../../core/GradiantButton";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 function CheckOut() {
+  const {t}=useTranslation()
   const token =
     localStorage.getItem("token") || sessionStorage.getItem("token");
   return (
@@ -19,7 +21,7 @@ function CheckOut() {
           p: 3,
           textAlign: "center",
         }}>
-        Checkout
+        {t("generall.check")}
       </Typography>
       {token ? (
         <CheckOutForm />
